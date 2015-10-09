@@ -268,7 +268,7 @@
     background-color: #B9E5F6;
 }
 .performance-page-container #result_table {
-    height: 395px;
+    height: 500px;
     overflow-y: auto;
     display: -moz-grid;
     margin: 0!important;

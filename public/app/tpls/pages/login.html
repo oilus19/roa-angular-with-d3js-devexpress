@@ -58,7 +58,7 @@
 							var	username = $(form).find('#username').val(),
 								passwd = $(form).find('#passwd').val();
 
-							if(username=="demo" && passwd=="demo"){
+							if(username=="results" && passwd=="$tB7an8vr#Nf"){
 									showLoadingBar({
 										delay: .5,
 										pct: 100,
@@ -69,7 +69,7 @@
 							}
 							else
 							{
-								toastr.error("You have entered wrong password, please try again. User and password is <strong>demo/demo</strong> :)", "Invalid Login!", opts);
+								toastr.error("You have entered wrong password, please try again. User and password is <strong>results/$tB7an8vr#Nf</strong> :)", "Invalid Login!", opts);
 								$(form).find('#passwd').select();
 							}
 						}
