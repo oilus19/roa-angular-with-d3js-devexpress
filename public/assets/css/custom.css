@@ -367,6 +367,16 @@
 .sidebar-menu.collapsed .main-menu > li {
     padding-bottom: 30px;
 }
+@media screen and (max-width: 768px) {
+    .navbar.horizontal-menu .navbar-inner > .nav.nav-userinfo {
+        background-color: transparent;
+    }
+    .navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > a {
+        border-top: 1px solid #212121;
+    }
+}
+
+
 ul.dropdown-menu.checkbox-list li {
     display: block;
     clear: both;
@@ -384,6 +394,7 @@ ul.dropdown-menu.checkbox-list li:hover {
 .dxc-tooltip {
     z-index: 999;
 }
+
 
 @media screen and (max-width: 1199px) {
     .trends-page-container .col-lg-7 {
