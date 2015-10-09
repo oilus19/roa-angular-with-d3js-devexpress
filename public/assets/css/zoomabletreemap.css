@@ -1,0 +1,58 @@
+#chart {
+  width: 960px;
+  height: 500px;
+}
+#chart text {
+  pointer-events: none;
+}
+
+#chart .grandparent text {
+  font-size: 17px;
+}
+#chart rect{
+  fill: none;
+  stroke: #fff;
+}
+#chart rect.parent,
+  .grandparent rect {
+    stroke-width: 2px;
+  }
+#chart .grandparent rect {
+  fill: white;
+}
+
+#chart .grandparent:hover rect {
+  fill: #ddd;
+}
+
+#chart .children rect.parent,
+.grandparent rect {
+  cursor: pointer;
+}
+#chart .children:hover rect.child {
+  fill: #bbb;
+}
+#chart .children rect.parent {
+  fill: #bbb;
+  fill-opacity: 0.0;
+  display: none;
+}
+
+#chart .treemaptooltip {                                                        /* NEW */
+  background: #000;                                               /* NEW */
+  box-shadow: 0 0 5px #999999;                                    /* NEW */
+  color: #fff;                                                    /* NEW */
+  display: none;                                                  /* NEW */
+  font-size: 12px;                                                /* NEW */
+  left: 130px;                                                    /* NEW */
+  padding: 10px;                                                  /* NEW */
+  position: absolute;                                             /* NEW */
+  text-align: right;                                             /* NEW */
+  top: 95px;                                                      /* NEW */
+  width: 220px;                                                    /* NEW */
+  height: auto;
+  z-index: 10;                                                    /* NEW */
+  opacity: 1.0;
+}                                                                 /* NEW */
+
+

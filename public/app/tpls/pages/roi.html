@@ -1,0 +1,162 @@
+<div ng-controller="RoiPageCtrl">
+
+	<div style="padding:20px 20px 10px; background:white; margin-bottom: 30px">
+		<div class="btn-toolbar row">
+			<div class="col-md-8">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'networks'" ng-change="LoadData(); ">
+						Network
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'channels'" ng-change="LoadData();">
+						Channel
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'creative'" ng-change="LoadData();">
+						Creative
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Saturday'" ng-change="LoadData();">
+						Weekday
+					</label>
+				</div>
+
+				<div class="btn-group" style="margin-left: 80px">
+					<select class="form-control btn-lg" style="height:44px" ng-model="filter2" ng-change="LoadData();"> 
+						<option disabled selected>Combine with</option> 
+						<option value="campaign">Campaign</option>
+						<option value="Month of datetime">Month</option>
+						<option value="Week of datetime">Week</option>
+						<option value="Saturday" ng-if="filter1!='Saturday'">Weekday</option> 
+						<option value="Daytime">Daypart</option> 
+						<option value="country">Country</option> 
+						<option value="region">Region</option>
+						<option value="city">City</option> 
+						<option value="medium">Medium</option> 
+						<option value="device">Device</option> 
+						<option value="networks" ng-if="filter1!='networks'">Network</option> 
+						<option value="channels" ng-if="filter1!='channels'">Channel</option> 
+						<option value="creative" ng-if="filter1!='creative'">Creative</option> 
+						<option value="program">Program</option>
+						<option value="">Place in break</option>
+						<option value="">Center vs end</option> 
+						<option value="length">Length</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="btn-group pull-right" data-toggle="buttons">
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'users'"  ng-change="LoadData();">
+						Users
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'new users'"  ng-change="LoadData();">
+						New Users
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'conversions'"  ng-change="LoadData();">
+						Conversions
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<div class="row">
+		<div class="col-lg-6 mb-40">
+			<p id="chart" style="width:100%; height: 547px"></p>
+
+			<div class="row">
+				<div class="col-sm-8">
+					<div style="margin-top:20px" class="xe-widget xe-counter" xe-counter data-count="" data-from="0" data-to="400" data-prefix="Budget: $" data-duration="1">
+						<div class="xe-upper">
+							<div class="xe-icon">
+								<i class="linecons-cloud"></i>
+							</div>
+							<div class="xe-label">
+								<strong class="num budget-of-selected" style="font-size: 30px; line-height: 64px">0</strong>
+							</div>
+						</div>
+						<div class="xe-lower">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-6">
+
+			
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Returns</h3>
+				</div>
+				<div class="panel-body">	
+					<script type="text/javascript">
+						jQuery(document).ready(function($)
+						{
+							if( ! $.isFunction($.fn.dxChart))
+								return;
+								
+							
+						});
+					</script>
+					<div style="height:450px; width:100%; overflow : auto;"><div id="bar-5" style="height: 450px; width: 100%;">
+					</div></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="xe-widget xe-counter" xe-counter data-count="" data-from="0" data-to="4000" data-suffix="" data-decimal="," data-duration="1.5">
+						<div class="xe-upper">
+							<div class="xe-icon">
+								<i class="linecons-cloud"></i>
+							</div>
+							<div class="xe-label">
+								<span style="font-size: 20px; text-transform: none;">Users</span>
+								<strong class="num users-of-selected" style="font-size: 24px; line-height: 40px;">0</strong>
+							</div>
+						</div>
+						<div class="xe-lower">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="xe-widget xe-counter xe-counter-blue" xe-counter data-count="" data-from="0" data-to="8" data-prefix="$" data-decimal="," data-duration="1.5">
+						<div class="xe-upper">
+							<div class="xe-icon">
+								<i class="linecons-user"></i>
+							</div>
+							<div class="xe-label">
+								<span style="font-size: 20px; text-transform: none;">CpU</span>
+								<strong class="num cpu-of-selected" style="font-size: 24px; line-height: 40px;">0</strong>
+							</div>
+						</div>
+						<div class="xe-lower">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="xe-widget xe-counter xe-counter-info" xe-counter data-count="" data-from="0" data-to="800000" data-prefix="$" data-decimal="," data-duration="1.5">
+						<div class="xe-upper">
+							<div class="xe-icon">
+								<i class="linecons-camera"></i>
+							</div>
+							<div class="xe-label">
+								<span style="font-size: 20px; text-transform: none;">Revenue</span>
+								<strong class="num revenue-of-selected" style="font-size: 24px; line-height: 40px;">0</strong>
+							</div>
+						</div>
+						<div class="xe-lower">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+
+
+</script>

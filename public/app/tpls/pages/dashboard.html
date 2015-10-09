@@ -1,0 +1,143 @@
+<div ng-controller="DashboardPageCtrl" class="dashboard-page-container">
+
+<div class="row">
+	<div class="col-lg-3">
+		
+		<div class="row counter-buttons">
+
+
+			<div class="col-md-4 col-lg-12">
+				<div class="xe-widget xe-counter-block xe-counter-block-revenue">
+					<div class="xe-upper">
+						<div class="xe-icon">
+							<i class="fa-line-chart"></i>
+						</div>
+						<div class="xe-label">
+							<strong class="num revenue-from-tv-counter">$0</strong>
+							<span>REVENUE FROM TV</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-4 col-lg-12">
+				<div class="xe-widget xe-counter-block xe-counter-block-cpc">
+					<div class="xe-upper">
+						<div class="xe-icon">
+							<i class="fa-dollar"></i>
+						</div>
+						<div class="xe-label">
+							<strong class="num cost-per-conversion-counter">$0</strong>
+							<span>COST PER CONVERSION</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-4 col-lg-12">
+				<div class="xe-widget xe-counter-block xe-counter-block-investment">
+					<div class="xe-upper">
+						<div class="xe-icon">
+							<i class="linecons-money"></i>
+						</div>
+						<div class="xe-label">
+							<strong class="num return-on-investment-counter">$0</strong>
+							<span>RETURN ON INVESTMENT</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		
+	</div>
+	<div class="col-lg-6">
+		
+		<div class="chart-item-bg">
+			<div class="chart-label">
+			</div>
+			<div id="pageviews-visitors-chart" style="height: 453px; padding: 10px 10px 20px"></div>
+		</div>
+		
+	</div>
+	<div class="col-lg-3">
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="chart-label text-center" style="width: 100%">
+					<span class="text-upper text-muted">Budget ROI</span>
+					<div class="num budget-roi"><div class="h1 text-secondary text-bold" style="color: #68b828" xe-counter data-count="this" data-from="0" data-to="0" data-suffix="%" data-duration="1">0%</div></div>
+				</div>
+				<div id="gauge-1" style="height: 310px; width: 100%;"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="xe-widget xe-map-stats">
+			<div class="xe-map">
+				<div id="sample-map-widget"></div>
+			</div>
+			<div class="xe-details">
+				<div class="xe-label">
+					<h3>Top Destinations</h3>
+				</div>
+				
+				<ul class="list-unstyled">
+					<li>
+						<div class="xe-map-data">
+							<span class="label label-secondary">11,342</span>
+							<span class="xe-label">New York</span>
+						</div>
+					</li>
+					<li>
+						<div class="xe-map-data">
+							<span class="label label-purple">7601</span>
+							<span class="xe-label">Los Angeles</span>
+						</div>
+					</li>
+					<li>
+						<div class="xe-map-data">
+							<span class="label label-yellow">5567</span>
+							<span class="xe-label">Chicago</span>
+						</div>
+					</li>
+					<li>
+						<div class="xe-map-data">
+							<span class="label label-red">4987</span>
+							<span class="xe-label">Boston</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-lg-6">
+		
+		<div class="panel panel-default" style="min-height: 280px">
+			<div class="panel-heading">
+				RECENT INSIGHTS
+			</div>
+			
+			<div class="panel-body">
+				<ul style="font-size: 14px">
+					<li class="mt-10 mb-15">KNBC was the best performing channel for the selected time duration with an average cost per conversion of $27.3.</li>
+					<li class="mt-10 mb-15">Spots airings on Friday mornings had the best performance with avg cost per user of $13. Sunday evenings had the worst with a cost per user of $468. That's 36x of difference.</li>
+					<li class="mt-10 mb-10">Mobile device users were your most active response group for your last campaign - it brought 75% of sessions! Others were shared between tablet and desktop.</li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+</div>
+

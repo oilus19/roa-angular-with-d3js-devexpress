@@ -1,0 +1,23 @@
+<!-- User Info Sidebar -->
+<div class="user-info-sidebar">
+	
+	<a href="" class="user-img">
+		<img src="{{currentUser.photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
+	</a>
+	
+	<a href="" class="user-name">
+		{{currentUser.username}}
+		<span class="user-status is-online"></span>
+	</a>
+	
+	<span class="user-title" ng-bind-html="currentUser.title"></span>
+	
+	<hr/>
+
+	<ul class="list-unstyled user-info-list mb-20">
+		<li>
+			<i class="fa-briefcase"></i>
+			{{currentUser.client}}
+		</li>
+	</ul>
+</div>

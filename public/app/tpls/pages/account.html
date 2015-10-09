@@ -1,0 +1,143 @@
+<script type="text/ng-template" id="editUsernameModalContent">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="close();" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Change user name</h4>
+	</div>
+	
+	<div class="modal-body">
+		<form role="form" id="form" class="validate">
+			<div class="form-group">
+				<input class="form-control" name="name" ng-model="value" type="text" data-validate="required" data-message-required="Please enter your name." />
+			</div>
+		</form>
+	</div>
+	
+	<div class="modal-footer">
+		<button type="button" class="btn btn-white" ng-click="close();">Close</button>
+		<button type="button" class="btn btn-info" ng-click="save();">Save changes</button>
+	</div>
+</script>
+<script type="text/ng-template" id="editEmailModalContent">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="close();" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Change email</h4>
+	</div>
+	
+	<div class="modal-body">
+		<form role="form" id="form" class="validate">
+			<div class="form-group">
+				<input class="form-control" name="email" ng-model="value" type="text" data-validate="email" placeholder="Email Field" />
+			</div>
+		</form>
+	</div>
+	
+	<div class="modal-footer">
+		<button type="button" class="btn btn-white" ng-click="close();">Close</button>
+		<button type="button" class="btn btn-info" ng-click="save();">Save changes</button>
+	</div>
+</script>
+<script type="text/ng-template" id="editPasswordModalContent">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="close();" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Change password</h4>
+	</div>
+	
+	<div class="modal-body">
+		<input class="form-control" id="password" ng-model="value" type="password" data-validate="required">
+	</div>
+	
+	<div class="modal-footer">
+		<button type="button" class="btn btn-white" ng-click="close();">Close</button>
+		<button type="button" class="btn btn-info" ng-click="save();">Save changes</button>
+	</div>
+</script>
+<script type="text/ng-template" id="modal-photo">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="currentModal.close();" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Change photo</h4>
+	</div>
+	
+	<div class="modal-body">
+		<input class="form-control" id="photo" type="text">
+	</div>
+	
+	<div class="modal-footer">
+		<button type="button" class="btn btn-white" ng-click="currentModal.close();">Close</button>
+		<button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Save changes</button>
+	</div>
+</script>
+
+	<page-title ng-if="layoutOptions.pageTitles" title="Account"></page-title>
+
+
+<section class="profile-env" ng-controller="AccountPageCtrl">
+	
+	<div class="row">
+	
+		<div class="col-md-3">
+			<user-info-sidebar></user-info-sidebar>
+		</div>
+		
+		<div class="col-md-9">
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Account Information</h3>
+				</div>
+				<div class="panel-body">
+
+					<form role="form" class="form-horizontal">
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="username">User name</label>
+
+							<div class="col-sm-9 form-inline">
+								<input type="text" class="form-control" id="username" ng-model="currentUser.username" disabled>
+								<button class="btn btn-secondary btn-single" ng-click="openEditUsernameModal()">Change user name</button>
+							</div>
+						</div>
+
+						<div class="form-group-separator"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="email">Email address</label>
+
+							<div class="col-sm-9 form-inline">
+								<input type="email" class="form-control" id="email" ng-model="currentUser.email" disabled>
+								<button class="btn btn-secondary btn-single" ng-click="openEditEmailModal()">Change email address</button>
+							</div>
+						</div>
+
+						<div class="form-group-separator"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="password">Password</label>
+
+							<div class="col-sm-9 form-inline">
+								<input type="password" class="form-control" id="password" ng-model="currentUser.password" disabled>
+								<button class="btn btn-secondary btn-single" ng-click="openEditPasswordModal()">Change password</button>
+							</div>
+						</div>
+
+						<div class="form-group-separator"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="photo">Profile photo</label>
+
+							<div class="col-sm-9">
+								<img src="{{currentUser.photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
+								<button class="btn btn-secondary btn-single" ng-click="openModal('modal-photo')">Change photo</button>
+							</div>
+						</div>
+
+
+						<div class="form-group-separator"></div>
+					</form>
+				</div>
+			</div>
+	
+		</div>
+		
+	</div>
+	
+</section>

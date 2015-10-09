@@ -1,0 +1,46 @@
+blockquote {
+	
+	small {
+		margin-top: @base-padding;
+		display: block;
+	}
+}
+.blockquote {
+	position: relative;
+	padding: @base-margin @default-padding;
+	background: #fff;
+	border: 1px solid @default-border-color;
+	
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 6px;
+		background: #f7f7f7;
+	}
+	
+	&.blockquote-blue { .resultsonair-blockquote-style(@xe-blue); }
+	&.blockquote-red { .resultsonair-blockquote-style(@xe-red); }
+	&.blockquote-success { .resultsonair-blockquote-style(@brand-success); }
+	&.blockquote-warning { .resultsonair-blockquote-style(@brand-warning); }
+	&.blockquote-info { .resultsonair-blockquote-style(@brand-info); }
+	&.blockquote-danger { .resultsonair-blockquote-style(@brand-danger); }
+	&.blockquote-purple { .resultsonair-blockquote-style(@xe-purple); }
+	&.blockquote-black { .resultsonair-blockquote-style(@xe-black); }
+}
+
+.resultsonair-blockquote-style(@border)
+{
+	border: 1px solid @border;
+	
+	&:before {
+		background: fade(@border, 10%);
+	}
+	
+	strong {
+		color: @border;
+	}
+}

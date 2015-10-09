@@ -1,0 +1,74 @@
+.popover,
+.tooltip {
+	
+	+ .btn {
+		margin-left: @base-padding/2;
+	}
+}
+
+.popover {
+	padding: 0;
+	border: 1px solid @default-border-color;
+	.box-shadow(none);
+	
+	&.popover-primary { .resultsonair-popover-style(@brand-primary); }
+	&.popover-secondary { .resultsonair-popover-style(@secondary-color); }
+	&.popover-info { .resultsonair-popover-style(@brand-info); }
+	&.popover-warning { .resultsonair-popover-style(@brand-warning); }
+	&.popover-danger { .resultsonair-popover-style(@brand-danger); }
+	&.popover-success { .resultsonair-popover-style(@brand-success); }
+	&.popover-purple { .resultsonair-popover-style(@xe-purple); }
+	&.popover-blue { .resultsonair-popover-style(@xe-blue); }
+	&.popover-red { .resultsonair-popover-style(@xe-red); }
+	&.popover-black { .resultsonair-popover-style(@xe-blue); }
+}
+
+.tooltip {
+	
+	.tooltip-inner {
+		padding: @base-padding @base-padding+5;
+	}
+	
+	&.tooltip-primary { .resultsonair-tooltip-style(@brand-primary); }
+	&.tooltip-secondary { .resultsonair-tooltip-style(@secondary-color); }
+	&.tooltip-info { .resultsonair-tooltip-style(@brand-info); }
+	&.tooltip-warning { .resultsonair-tooltip-style(@brand-warning); }
+	&.tooltip-danger { .resultsonair-tooltip-style(@brand-danger); }
+	&.tooltip-success { .resultsonair-tooltip-style(@brand-success); }
+	&.tooltip-purple { .resultsonair-tooltip-style(@xe-purple); }
+	&.tooltip-blue { .resultsonair-tooltip-style(@xe-blue); }
+	&.tooltip-red { .resultsonair-tooltip-style(@xe-red); }
+	&.tooltip-black { .resultsonair-tooltip-style(@xe-blue); }
+}
+
+.resultsonair-popover-style(@bg)
+{
+		
+	.popover-title {
+		background-color: @bg;
+		color: #FFF;
+		position: relative;
+	}
+	
+	&.top,
+	&.bottom {
+	
+		.popover-title {
+			margin: -1px;
+		}
+	}
+	
+	&.bottom .arrow:after { border-bottom-color: @bg; }
+}
+
+.resultsonair-tooltip-style(@bg)
+{
+	.tooltip-inner {
+		background-color: @bg;
+	}
+	
+	&.top .tooltip-arrow { border-top-color: @bg; }
+	&.bottom .tooltip-arrow { border-bottom-color: @bg; }
+	&.left .tooltip-arrow { border-left-color: @bg; }
+	&.right .tooltip-arrow { border-right-color: @bg; }
+}

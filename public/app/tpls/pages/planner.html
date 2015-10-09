@@ -1,0 +1,106 @@
+<div class="row" ng-controller="PlannerPageCtrl">
+
+	<div class="col-lg-4 mb-40">
+		<div class="tabs-vertical-env tabs-vertical-bordered right-aligned"><!-- add class "right-aligned" for the right aligned tabs -->
+			
+			<div class="tab-content">
+				<div class="tab-pane" ng-class="{active: vertical_tabs == 1}">
+					<input type="text" class="form-control" ng-model="filter_budget" data-validate="number" placeholder="Enter Budget" />
+				</div>
+				<div class="tab-pane" ng-class="{active: vertical_tabs == 2}">
+					<table class="table responsive">
+						<thead>
+							<tr>
+								<th>Networks</th>
+								<th>Impressions</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr ng-repeat="item in filter_network">
+								<td>
+									<div class="btn-group" dropdown>
+										<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+											{{item.network || 'Networks'}} <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-white" role="menu">
+											<li ng-click="item.network = ''"><a>Networks</a></li>
+											<li ng-repeat="network in network_list" ng-click="item.network = network"><a>{{ network }}</a></li>
+										</ul>
+									</div>
+								</td>
+								<td>
+									<input type="text" class="form-control" ng-model="item.impressions" data-validate="number" placeholder="Input TVR" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		
+			<ul class="nav tabs-vertical">
+				<li ng-class="{active: vertical_tabs == 1}"><a href="" ng-click="vertical_tabs = 1">Budget</a></li>
+				<li ng-class="{active: vertical_tabs == 2}"><a href="" ng-click="vertical_tabs = 2">Impressions</a></li>
+			</ul>
+			
+		</div>	
+	</div>
+
+	<div class="col-lg-8">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				
+				<div class="table-responsive" data-pattern="priority-columns" data-add-focus-btn="false" data-sticky-table-header="true" data-add-display-all-btn="true">
+				
+					<table cellspacing="0" class="table table-small-font table-bordered table-striped planner-table">
+						<thead>
+							<tr>
+								<th>Network</th>
+								<th data-priority="1">Channel</th>
+								<th data-priority="2">Daypart</th>
+								<th data-priority="3">Impressions</th>
+								<th data-priority="4">Impression %</th>
+								<th data-priority="5">Budget</th>
+								<th data-priority="6">Budget %</th>
+								<th data-priority="7">ROI</th>
+								<th data-priority="8">CpU</th>
+								<th data-priority="9">CpNU</th>
+								<th data-priority="10">CpC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in dataset" ng-if="isVisible(item)">
+								<td>{{item.networks}}</td>
+								<td>{{item.channels}}</td>
+								<td>{{item.Daytime}}</td>
+								<td>{{item.impressions}}</td>
+								<td>{{item.impression_p}}</td>
+								<td>{{item.budgets}}</td>
+								<td>{{item.budget_p}}</td>
+								<td>{{item.roi}}</td>
+								<td>{{item.cpu}}</td>
+								<td>{{item.cpnu}}</td>
+								<td>{{item.cpc}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>		
+
+				<script>
+				jQuery(document).ready(function($)
+				{
+					setTimeout(function()
+					{
+						$(".checkbox-row input").addClass('cbr');
+						cbr_replace();
+					}, 0);
+
+					$('.table-responsive').responsiveTable();
+				});
+				</script>	
+
+			</div>
+		</div>
+	</div>
+
+</div>

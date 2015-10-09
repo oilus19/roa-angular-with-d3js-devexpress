@@ -1,0 +1,165 @@
+<div ng-controller="PerformancePageCtrl" class="performance-page-container">
+	<div style="padding:20px 20px 10px; background:white; margin-bottom: 30px">
+		<div class="btn-toolbar row">
+			<div class="col-md-8">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'networks'" ng-change="LoadData();">
+						Network
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'channels'" ng-change="LoadData();">
+						Channel
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'creative'" ng-change="LoadData();">
+						Creative
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Saturday'" ng-change="LoadData();">
+						Weekday
+					</label>
+				</div>
+
+				<div class="btn-group" style="margin-left: 80px">
+					<select class="form-control btn-lg" style="height:44px" ng-model="filter2" ng-change="LoadData();"> 
+						<option disabled selected>Combine with</option> 
+						<option value="campaign">Campaign</option>
+						<option value="Month of datetime">Month</option>
+						<option value="Week of datetime">Week</option>
+						<option value="Saturday" ng-if="filter1!='Saturday'">Weekday</option> 
+						<option value="Daytime">Daypart</option> 
+						<option value="country">Country</option>
+						<option value="region">Region</option>
+						<option value="city">City</option>
+						<option value="medium">Medium</option> 
+						<option value="device">Device</option> 
+						<option value="networks" ng-if="filter1!='networks'">Network</option> 
+						<option value="channels" ng-if="filter1!='channels'">Channel</option> 
+						<option value="creative" ng-if="filter1!='creative'">Creative</option> 
+						<option value="program">Program</option>
+						<option value="">Place in break</option>
+						<option value="">Center vs end</option>
+						<option value="length">Length</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="btn-group pull-right" data-toggle="buttons">
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'users'">
+						Users
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'new users'">
+						New Users
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'conversions'">
+						Conversions
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<div class="row">
+		<div class="col-lg-6 mb-40">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Performance Overview</h3>
+				</div>
+				<div class="panel-body" style="height: 570px;">
+					<div id="bar-6" style="height: 520px; width: 100%;"></div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-6">
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="xe-widget xe-counter" xe-counter data-count="." data-from="0" data-to="25" data-prefix="$" data-decimal="," data-duration="1.5">
+							<div class="xe-icon">
+								<i class="linecons-cloud"></i>
+							</div>
+							<div class="xe-label">
+								<strong id="cpu_num" class="num">0.0%</strong>
+								<span style="text-transform: none;">CpU</span>
+							</div>
+						</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="xe-widget xe-counter xe-counter-blue" xe-counter data-count="." data-from="0" data-to="6" data-prefix="$" data-decimal="," data-duration="1.5">
+						<div class="xe-icon">
+							<i class="linecons-user"></i>
+						</div>
+						<div class="xe-label">
+							<strong id="cpnu_num" class="num">0</strong>
+							<span style="text-transform: none;">CpNU</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="xe-widget xe-counter xe-counter-info" xe-counter data-count="." data-from="0" data-to="9" data-prefix="$" data-decimal="," data-duration="1.5">
+						<div class="xe-icon">
+							<i class="linecons-camera"></i>
+						</div>
+						<div class="xe-label">
+							<strong id="cpc_num" class="num">0</strong>
+							<span style="text-transform: none;">CpC</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Performance in Detail</h3>
+				</div>
+				<div style="height:445px; margin-top: 20px">
+
+					<div class="table-responsive" data-pattern="priority-columns" data-add-focus-btn="false" data-sticky-table-header="true" data-add-display-all-btn="true">
+						<table id="result_table" class="table table-striped performance-table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th data-priority="1">Ads</th>
+									<th data-priority="2">Budget</th>
+									<th data-priority="7">ROI</th>
+									<th data-priority="4">Revenue</th>
+									<th data-priority="5">Users</th>
+									<th data-priority="7">New Users</th>
+									<th data-priority="7">Conversions</th>
+								</tr>
+							</thead>
+							
+							<tbody></tbody>
+						</table>
+					</div>
+
+					<script>
+					jQuery(document).ready(function($)
+					{
+						setTimeout(function()
+						{
+							$(".checkbox-row input").addClass('cbr');
+							cbr_replace();
+						}, 0);
+
+						$('.table-responsive').responsiveTable();
+
+						$("#result_table, #result_table-clone").dataTable({
+							dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+							autoWidth: false,
+							paging: false,
+						});
+
+						$("#result_table").scroll(function(){
+							$("#result_table-clone").css("left",-$(this).scrollLeft());
+						});
+					});
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,266 @@
+<div class="row" ng-controller="BreakdownPageCtrl">
+
+	<div class="col-lg-6 mb-40">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				
+				<div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+				
+					<table cellspacing="0" class="table table-small-font table-bordered table-striped breakdown-table">
+						<thead>
+							<tr>
+								<th>Campaign</th>
+								<th data-priority="1">Date</th>
+								<th data-priority="2">Time</th>
+								<th data-priority="3">Daypart</th>
+								<th data-priority="4">Creative</th>
+								<th data-priority="5">Length</th>
+								<th data-priority="6">Network</th>
+								<th data-priority="7">Channel</th>
+								<th data-priority="8">Region</th>
+								<th data-priority="9">Device</th>
+								<th data-priority="10">Users</th>
+								<th data-priority="11">New Users</th>
+								<th data-priority="12">Conversions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in dataset" ng-show="isVisible(item)">
+								<td>{{item.campaign}}</td>
+								<th>{{item.date}}</th>
+								<td>{{item.time}}</td>
+								<td>{{item.Daytime}}</td>
+								<td>{{item.creative}}</td>
+								<td>{{item.length || 0}}</td>
+								<th>{{item.network}}</th>
+								<td>{{item.channel}}</td>
+								<td>{{item.region}}</td>
+								<th>{{item.device}}</th>
+								<td>{{item.users}}</td>
+								<td>{{item.new_users}}</td>
+								<td>{{item.conversions}}</td>
+							</tr>	
+						</tbody>
+					</table>
+				</div>		
+				
+				<script type="text/javascript">
+
+				jQuery(document).ready(function($)
+				{
+					setTimeout(function()
+					{
+						$(".checkbox-row input").addClass('cbr');
+						cbr_replace();
+					}, 0);
+				});
+
+				// This JavaScript Will Replace Checkboxes in dropdown toggles
+				jQuery(document).ready(function($)
+				{
+					$('.table-responsive').responsiveTable({addFocusBtn:false});
+				});
+				</script>	
+
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-body">	
+
+				<div class="row"><div class="col-sm-12">
+					<div class="btn-group pull-right" data-toggle="buttons">
+						<label class="btn btn-white" ng-model="filter_option" btn-radio="'Avg Cost'">
+							Avg Cost
+						</label>
+						<label class="btn btn-white" ng-model="filter_option" btn-radio="'Total'">
+							Total
+						</label>
+					</div>
+				</div></div>
+
+				<div ng-show="filter_option=='Total'">
+					<!-- 'Users' Range Selector -->
+					<div>
+						<h4 style="float:left; width:100px; margin-top: 45px;">Users</h4>
+						<div id="range-1" style="height: 140px; margin-left:100px;"></div>
+					</div>
+
+					<!-- 'New Users' Range Selector -->
+					<div>
+						<h4 style="float:left; width:100px; margin-top: 45px;">New users</h4>
+						<div id="range-2" style="height: 140px; margin-left:100px;"></div>
+					</div>
+
+					<!-- 'Conversions' Range Selector -->
+					<div>
+						<h4 style="float:left; width:100px; margin-top: 45px;">Conversions</h4>
+						<div id="range-3" style="height: 140px; margin-left:100px;"></div>
+					</div>
+				</div>
+
+				<div ng-show="filter_option=='Avg Cost'">
+					<!-- 'CpU' Range Selector -->
+					<div>
+						<h4 style="float:left; width:100px; margin-top: 45px;">CpU</h4>
+						<div id="range-4" style="height: 140px; margin-left:100px;"></div>
+					</div>
+
+					<!-- 'CpNU' Range Selector -->
+					<div>
+						<h4 style="float:left; width:100px; margin-top: 45px;">CpNU</h4>
+						<div id="range-5" style="height: 140px; margin-left:100px;"></div>
+					</div>
+
+					<!-- 'CpC' Range Selector -->
+					<div>
+						<h4 style="float:left; width:100px; margin-top: 45px;">CpC</h4>
+						<div id="range-6" style="height: 140px; margin-left:100px;"></div>
+					</div>
+				</div>
+
+				<!-- Month / Weekday / Daypart Dropdown -->
+				<div>			
+
+					<div class="dropdown hover-dropdown" style="width:33%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Month
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in ['January', 'February', 'March', 'April', 'May', 'June', 'July',	'August', 'September', 'October', 'November', 'December']"><input type="checkbox" ng-model="filter.month[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>
+
+					<div class="dropdown hover-dropdown" style="width:33%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Weekday
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']"><input type="checkbox" ng-model="filter.weekday[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>	
+
+					<div class="dropdown hover-dropdown" style="width:34%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Daypart
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in filter_list.daypart"><input type="checkbox" ng-model="filter.daypart[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>	
+				</div>
+
+				<!-- Campaign / Creative / Spot length -->
+				<div>			
+
+					<div class="dropdown hover-dropdown" style="width:33%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Campaign
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in filter_list.campaign"><input type="checkbox" ng-model="filter.campaign[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>
+
+					<div class="dropdown hover-dropdown" style="width:33%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Creative
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in filter_list.creative"><input type="checkbox" ng-model="filter.creative[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>	
+
+					<div class="dropdown hover-dropdown" style="width:34%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Spot length
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in filter_list.length"><input type="checkbox" ng-model="filter.length[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>	
+				</div>
+					<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-6 pb-30">
+						<h4>Network</h4>
+
+						<div class="row"><div class="col-sm-12">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-white" ng-click="selectAllNetwork();">
+									All
+								</label>
+								<label class="btn btn-white" ng-click="deSelectAllNetwork();">
+									Clear
+								</label>
+							</div>
+						</div></div>
+								
+						<select class="form-control" multiple="multiple" id="multi-select1" name="my-select1[]"></select>
+					</div>
+
+					<div class="col-md-6 pb-30">
+						<h4>Channel</h4>
+
+						<div class="row"><div class="col-sm-12">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-white" ng-click="selectAllChannel();">
+									All
+								</label>
+								<label class="btn btn-white" ng-click="deSelectAllChannel();">
+									Clear
+								</label>
+							</div>
+						</div></div>
+
+						<select class="form-control" multiple="multiple" id="multi-select2" name="my-select2[]"></select>
+					</div>
+				</div>
+				<!-- Region / Device -->
+				<div>			
+
+					<div class="dropdown hover-dropdown" style="width:50%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Region
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in filter_list.region"><input type="checkbox" ng-model="filter.region[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>
+
+					<div class="dropdown hover-dropdown" style="width:50%; float:left;">
+					  <a class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
+					    Device
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu no-spacing checkbox-list">
+					    <li ng-repeat="item in filter_list.device"><input type="checkbox" ng-model="filter.device[$index]" ng-true-value="{{item}}" ng-false-value=""> {{item}}</li>
+					  </ul>
+					</div>	
+				</div>
+
+				<script>
+					$(document).ready(function(){
+						$('.hover-dropdown').hover(function() {
+						  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+						}, function() {
+						  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+						});
+					});
+				</script>
+			</div>
+		</div>
+			
+	</div>
+
+</div>

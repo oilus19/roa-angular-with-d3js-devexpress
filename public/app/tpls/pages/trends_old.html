@@ -1,0 +1,241 @@
+<div ng-controller="TrendsPageCtrl" class="trends-page-container">
+
+	<div>
+		<div class="btn-toolbar row">
+			<div class="col-md-12">
+				<div class="btn-group pull-right" data-toggle="buttons">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Hour'">
+						Hour
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Day'">
+						Day
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Week'">
+						Week
+					</label>
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Month'">
+						Month
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+
+<!-- First Row -->
+	<div class="row">
+		<div class="col-lg-5">
+
+			<div class="row">
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-videocam"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num users-counter">0</strong>
+							<span>Users</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-purple xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-doc"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num newusers-counter">0</strong>
+							<span>New Users</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-blue xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-lightbulb"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num conversion-counter">0</strong>
+							<span>Conversion</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-7 range-chart-container">
+			<div class="panel panel-default" style="overflow: hidden">
+				<div class="panel-body">	
+					<div id="range-1" style="height: 150px; width: 100%; margin-top: -20px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Second Row -->
+	<div class="row">
+		<div class="col-lg-5">
+
+			<div class="row">
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-pink xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-videocam"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num cpu-counter">0.0%</strong>
+							<span>Cost per User</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-turquoise xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-doc"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num cpnu-counter">0.0%</strong>
+							<span>Cost per New User</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-orange xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-lightbulb"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num cpc-counter">0.0%</strong>
+							<span>Cost per Conversion</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-7 range-chart-container">
+			<div class="panel panel-default" style="overflow: hidden">
+				<div class="panel-body">	
+					<div id="range-2" style="height: 150px; width: 100%; margin-top: -20px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Third Row -->
+	<div class="row">
+		<div class="col-lg-5">
+
+			<div class="row">
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-yellow xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-videocam"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num budget-counter">$0</strong>
+							<span>Budget</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-danger xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-doc"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num ads-counter">0</strong>
+							<span>Ads</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					
+					<div class="xe-widget xe-vertical-counter xe-vertical-counter-info xe-small-vertical-counter">
+						<div class="xe-icon">
+							<i class="linecons-lightbulb"></i>
+						</div>
+						
+						<div class="xe-label">
+							<strong class="num revenue-counter">$0</strong>
+							<span>Revenue</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-7 range-chart-container">
+			<div class="panel panel-default" style="overflow: hidden">
+				<div class="panel-body">	
+					<div id="range-3" style="height: 150px; width: 100%; margin-top: -20px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Responsive Table -->
+<div class="row">
+	<div class="col-md-12">
+	
+		<div class="panel panel-default">
+			<div class="panel-body">
+				
+				<div class="table-responsive" >
+				
+					<table cellspacing="0" class="table table-small-font table-bordered table-striped trend-table">
+						<thead>
+							<tr>
+								<th></th>
+								<th data-priority="1">Monday</th>
+								<th data-priority="2">Tuesday</th>
+								<th data-priority="3">Wednesday</th>
+								<th data-priority="4">Thursday</th>
+								<th data-priority="5">Friday</th>
+								<th data-priority="6">Saturday</th>
+								<th data-priority="7">Sunday</th>
+								<th data-priority="8">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="(key, row) in tablerows">
+								<th>{{row}}</th>
+								<td ng-repeat="cell in tabledataset[key] track by $index" ng-class="{last:$last || $parent.$last}">${{cell}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
