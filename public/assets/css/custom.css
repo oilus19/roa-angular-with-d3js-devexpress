@@ -331,7 +331,7 @@
     color: #FFF;
 }
 .navbar.horizontal-menu .navbar-inner > .nav > li.open > a:hover {
-    color: #606161;
+    color: white;
 }
 .navbar.horizontal-menu .daterange-inline {
     border-color: #212121;
@@ -340,6 +340,29 @@
 }
 .navbar.horizontal-menu .daterange-inline:hover {
     color: white;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > a {
+    background-color: #2F2F2F !important;
+    border-color: #212121;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li.user-profile > a:focus {
+    background-color: transparent;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > .dropdown-menu {
+    background-color: #2F2F2F;
+    border-color: #212121;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li a {
+    border-bottom: 1px solid #212121;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li a:hover {
+    color: white;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li.last {
+    background-color: transparent;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li.last:after {
+    display: none;
 }
 .sidebar-menu.collapsed .main-menu > li {
     padding-bottom: 30px;
