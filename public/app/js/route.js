@@ -107,8 +107,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $ocLa
 				deps: function($ocLazyLoad){
 					return $ocLazyLoad.load([
 						ASSETS.tables.datatables,
-						ASSETS.tables.rwd,
-						ASSETS.extra.scrollbar
+						ASSETS.tables.rwd
 					]);
 				},
 				resources: function($ocLazyLoad){
@@ -185,8 +184,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $ocLa
 			resolve: {
 				resources: function($ocLazyLoad){
 					return $ocLazyLoad.load([
-						ASSETS.charts.dxGlobalize,,
-						ASSETS.extra.scrollbar
+						ASSETS.charts.dxGlobalize
 					]);
 				},
 				dxCharts: function($ocLazyLoad){

@@ -217,6 +217,10 @@
 .sidebar-menu.collapsed {
     width: 60px;
 }
+.sidebar-menu.fixed.collapsed .main-menu {
+    position: fixed;
+    width: 60px;
+}
 .navbar.horizontal-menu .navbar-inner > .nav > li.daterange-filter {
     line-height: 30px;
 }
@@ -408,6 +412,9 @@ ul.dropdown-menu.checkbox-list li:hover {
 }
 .dxc-tooltip {
     z-index: 999;
+}
+.ps-container {
+    overflow: hidden;
 }
 
 

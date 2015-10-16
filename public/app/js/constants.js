@@ -143,11 +143,6 @@ app.constant('ASSETS', {
 		'cropper': [
 			appHelper.assetPath('js/cropper/cropper.min.js'),
 			appHelper.assetPath('js/cropper/cropper.min.css'),
-		],
-
-		'scrollbar': [
-			appHelper.assetPath('js/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js'),
-			appHelper.assetPath('js/perfect-scrollbar/css/perfect-scrollbar.min.css'),
 		]
 	}
 });
