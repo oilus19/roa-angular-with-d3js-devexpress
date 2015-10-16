@@ -3,7 +3,7 @@
 angular.module('resultsonair.controllers').
 	controller('PerformancePageCtrl', function($scope, $rootScope, $element){
 		$rootScope.page_title = "Performance";
-		$rootScope.exportTableSelector = '.performance-table';
+		$rootScope.exportTableSelector = '#result_table.performance-table';
 
 		$scope.performanceChart = {};
 		$scope.filter1 = 'networks';

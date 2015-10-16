@@ -3,7 +3,7 @@
 angular.module('resultsonair.controllers').
 	controller('BreakdownPageCtrl', function($scope, $rootScope, $element){
 		$rootScope.page_title = "Breakdown";
-		$rootScope.exportTableSelector = '.breakdown-table';
+		$rootScope.exportTableSelector = '#breakdown_table';
 		$scope.filter = { 
 			users: { startValue:100, endValue:1000 },
 			new_users: { startValue:100, endValue:1000 },

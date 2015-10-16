@@ -3,7 +3,7 @@
 angular.module('resultsonair.controllers').
 	controller('TrendsPageCtrl', function($scope, $element, $rootScope, $compile){
 		$rootScope.page_title = "Trends";
-		$rootScope.exportTableSelector = '.trend-table';
+		$rootScope.exportTableSelector = '#trend_table';
 
 		$scope.filter1 = 'Day';
 		$scope.tablerows = ['Breakfast','Coffee','Daytime','PrePeak','EarlyPeak','LatePeak','PostPeak','Total'];

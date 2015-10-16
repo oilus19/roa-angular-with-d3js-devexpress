@@ -3,7 +3,7 @@
 angular.module('resultsonair.controllers').
 	controller('PlannerPageCtrl', function($scope, $rootScope){
 		$rootScope.page_title = "Planner";
-		$rootScope.exportTableSelector = '.planner-table';
+		$rootScope.exportTableSelector = '#planner_table';
 
 		$scope.filter = {};
 		$scope.vertical_tabs = 1;

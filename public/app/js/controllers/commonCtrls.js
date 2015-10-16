@@ -213,6 +213,10 @@ angular.module('resultsonair.controllers', []).
 		$scope.exportCSV = function() {
 			if($($rootScope.exportTableSelector).length>0)
 				$($rootScope.exportTableSelector).tableExport({type:'csv', escape:'false'});
+		}		
+		$scope.exportExcel = function() {
+			if($($rootScope.exportTableSelector).length>0)
+				$($rootScope.exportTableSelector).tableExport({type:'excel', escape:'false'});
 		}
 		$scope.exportPNG = function() {
 			$.ajax({
