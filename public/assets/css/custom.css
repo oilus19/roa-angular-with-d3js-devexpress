@@ -309,6 +309,11 @@
     position: absolute;
     right: 10px;
 }
+#breakdown_table_container .table-responsive.off-screen.ps-container.ps-active-x > .ps-scrollbar-x-rail {
+    position: fixed !important;
+    bottom: 3px;
+    left: 60px !important;
+}
 .ms-container {
     max-width: 100%;
 }

@@ -185,7 +185,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $ocLa
 			resolve: {
 				resources: function($ocLazyLoad){
 					return $ocLazyLoad.load([
-						ASSETS.charts.dxGlobalize,
+						ASSETS.charts.dxGlobalize,,
+						ASSETS.extra.scrollbar
 					]);
 				},
 				dxCharts: function($ocLazyLoad){
