@@ -261,18 +261,27 @@
 .trends-page-container .trend-table thead th {
     width: 100px;
 }
-.performance-page-container #result_table_wrapper > .row {
-    display: none;
+.performance-page-container .table-responsive {
+    overflow: hidden;
 }
 .performance-page-container #result_table_wrapper {
     max-height: 500px;
-    overflow-y: auto;
+    position: relative;
+}
+.performance-page-container #result_table_wrapper .ps-scrollbar-y-rail {
+    z-index: 999;
+}
+.performance-page-container #result_table_wrapper > .row {
+    display: none;
 }
 .performance-page-container #result_table tr.selected {
     background-color: #B9E5F6;
 }
 .performance-page-container #result_table {
     margin: 0!important;
+}
+.performance-page-container #result_table-clone_wrapper {
+    position: relative;
 }
 .performance-page-container #result_table-clone {
     position: absolute;
