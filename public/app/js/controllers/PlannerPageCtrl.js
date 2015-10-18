@@ -15,7 +15,8 @@ angular.module('resultsonair.controllers').
 			return Math.floor(value * 10000 / total) /100;
 		}
 		$scope.isVisible = function(item) {
-			if($scope.filter_budget && parseFloat(item.budgets) > parseFloat($scope.filter_budget)) return false;
+			//if($scope.filter_budget && parseFloat(item.budgets) > parseFloat($scope.filter_budget)) return false;
+			if(item.invisible==true) return false;
 
 			var isVisible, existNetworkFilter=false;
 			for(var i=0; i<$scope.filter_network.length; i++) {
@@ -32,6 +33,20 @@ angular.module('resultsonair.controllers').
 
 			return true;
 		}
+
+		$scope.$watch(function(){ return $scope.filter_budget}, function(){
+			var total = 0;
+			var filter_budget = parseFloat($scope.filter_budget);
+			if($scope.dataset==undefined) return;
+
+			for (var i = 0; i < $scope.dataset.length; i++) { 
+				total += parseFloat($scope.dataset[i].budgets);
+				if(total<=filter_budget) 
+					$scope.dataset[i].invisible = false;
+				else
+					$scope.dataset[i].invisible = true;
+			}
+		});
 
 		$.ajax({
 			type: 'POST',
