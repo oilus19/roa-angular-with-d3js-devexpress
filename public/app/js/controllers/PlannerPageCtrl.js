@@ -41,7 +41,7 @@ angular.module('resultsonair.controllers').
 
 			for (var i = 0; i < $scope.dataset.length; i++) { 
 				total += parseFloat($scope.dataset[i].budgets);
-				if(total<=filter_budget) 
+				if(!filter_budget || total<=filter_budget) 
 					$scope.dataset[i].invisible = false;
 				else
 					$scope.dataset[i].invisible = true;
