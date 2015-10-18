@@ -422,6 +422,11 @@ angular.module('resultsonair.controllers').
 									days: 7
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD, [Week] W');
+					            }
+							},
             			});
             			$scope.lineChart2.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource2, 'Week'),
@@ -431,6 +436,11 @@ angular.module('resultsonair.controllers').
 									days: 7
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD, [Week] W');
+					            }
+							},
             			});
             			$scope.lineChart3.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource3, 'Week'),
@@ -439,6 +449,11 @@ angular.module('resultsonair.controllers').
 								majorTickInterval: {
 									days: 7
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD, [Week] W');
+					            }
 							},
             			});
             			break;
@@ -481,6 +496,11 @@ angular.module('resultsonair.controllers').
 									days: 0
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('h:m a, MMM DD');
+					            }
+							},
             			});
             			$scope.lineChart2.option({
             				dataSource: $scope.dataSourceExtended2,
@@ -491,6 +511,11 @@ angular.module('resultsonair.controllers').
 									days: 0
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('h:m a, MMM DD');
+					            }
+							},
             			});
             			$scope.lineChart3.option({
             				dataSource: $scope.dataSourceExtended3,
@@ -500,6 +525,11 @@ angular.module('resultsonair.controllers').
 									hours: 3,
 									days: 0
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('h:m a, MMM DD');
+					            }
 							},
             			});
             			break;
