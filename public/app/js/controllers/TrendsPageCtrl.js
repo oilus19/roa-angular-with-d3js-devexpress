@@ -498,7 +498,7 @@ angular.module('resultsonair.controllers').
 							},
 							sliderMarker: {
 								customizeText: function (value) {
-					                return moment(value.value).format('h:m a, MMM DD');
+					                return moment(value.value).format('hh:mm a, MMM DD');
 					            }
 							},
             			});
@@ -513,7 +513,7 @@ angular.module('resultsonair.controllers').
 							},
 							sliderMarker: {
 								customizeText: function (value) {
-					                return moment(value.value).format('h:m a, MMM DD');
+					                return moment(value.value).format('hh:mm a, MMM DD');
 					            }
 							},
             			});
@@ -528,7 +528,7 @@ angular.module('resultsonair.controllers').
 							},
 							sliderMarker: {
 								customizeText: function (value) {
-					                return moment(value.value).format('h:m a, MMM DD');
+					                return moment(value.value).format('hh:mm a, MMM DD');
 					            }
 							},
             			});
