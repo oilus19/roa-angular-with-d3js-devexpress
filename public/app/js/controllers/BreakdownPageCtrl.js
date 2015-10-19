@@ -5,12 +5,12 @@ angular.module('resultsonair.controllers').
 		$rootScope.page_title = "Breakdown";
 		$rootScope.exportTableSelector = '#breakdown_table';
 		$scope.filter = { 
-			users: { startValue:100, endValue:1000 },
-			new_users: { startValue:100, endValue:1000 },
-			conversions: { startValue:100, endValue:1000 },
-			cpu: { startValue:10, endValue:150 },
-			cpnu: { startValue:10, endValue:150 },
-			cpc: { startValue:10, endValue:150 },
+			users: { startValue:1, endValue:1000 },
+			new_users: { startValue:1, endValue:1000 },
+			conversions: { startValue:1, endValue:1000 },
+			cpu: { startValue:0, endValue:1000 },
+			cpnu: { startValue:0, endValue:1000 },
+			cpc: { startValue:0, endValue:1000 },
 			month: [],
 			weekday: [],
 			daypart: [],
@@ -40,12 +40,12 @@ angular.module('resultsonair.controllers').
 					$scope.dataset[i].time = temp[1];
 					$scope.dataset[i].month = $scope.dataset[i]['Month of datetime'];
 					$scope.dataset[i].weekday = $scope.dataset[i]['Weekday of datetime'];
-					$scope.dataset[i].users = between(100, 1000);
-					$scope.dataset[i].new_users = between(100, 1000);
-					$scope.dataset[i].conversions = between(100, 1000);
-					$scope.dataset[i].cpu = between(10, 150);
-					$scope.dataset[i].cpnu = between(10, 150);
-					$scope.dataset[i].cpc = between(10, 150);
+					$scope.dataset[i].users = between(1, 1000);
+					$scope.dataset[i].new_users = between(1, 1000);
+					$scope.dataset[i].conversions = between(1, 1000);
+					$scope.dataset[i].cpu = between(0, 1000);
+					$scope.dataset[i].cpnu = between(0, 1000);
+					$scope.dataset[i].cpc = between(0, 1000);
 		    	}
 
 		    	$scope.$apply();

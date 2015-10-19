@@ -215,7 +215,7 @@
     top: 10px;
 }
 .sidebar-menu.collapsed {
-    width: 60px;
+    width: 45px;
 }
 .sidebar-menu.fixed.collapsed .main-menu {
     position: fixed;
