@@ -215,6 +215,10 @@
     top: 10px;
 }
 .sidebar-menu.collapsed {
+    width: 45px;
+}
+.sidebar-menu.fixed.collapsed .main-menu {
+    position: fixed;
     width: 60px;
 }
 .navbar.horizontal-menu .navbar-inner > .nav > li.daterange-filter {
@@ -261,6 +265,16 @@
 .trends-page-container .trend-table thead th {
     width: 100px;
 }
+.performance-page-container .table-responsive {
+    overflow: hidden;
+}
+.performance-page-container #result_table_wrapper {
+    max-height: 500px;
+    position: relative;
+}
+.performance-page-container #result_table_wrapper .ps-scrollbar-y-rail {
+    z-index: 999;
+}
 .performance-page-container #result_table_wrapper > .row {
     display: none;
 }
@@ -268,10 +282,10 @@
     background-color: #B9E5F6;
 }
 .performance-page-container #result_table {
-    height: 395px;
-    overflow-y: auto;
-    display: -moz-grid;
     margin: 0!important;
+}
+.performance-page-container #result_table-clone_wrapper {
+    position: relative;
 }
 .performance-page-container #result_table-clone {
     position: absolute;
@@ -283,7 +297,7 @@
 }
 .performance-page-container .table-responsive .sticky-table-header.fixed-solution {
     position: absolute;
-    top: 0;
+    top: 0 !important;
     left: 0;
     right: 0;
     visibility: visible !important;
@@ -298,6 +312,11 @@
 .performance-page-container .dataTables_wrapper .table thead > tr .sorting_desc::before {
     position: absolute;
     right: 10px;
+}
+#breakdown_table_container .table-responsive.off-screen.ps-container.ps-active-x > .ps-scrollbar-x-rail {
+    position: fixed !important;
+    bottom: 3px;
+    left: 60px !important;
 }
 .ms-container {
     max-width: 100%;
@@ -331,7 +350,7 @@
     color: #FFF;
 }
 .navbar.horizontal-menu .navbar-inner > .nav > li.open > a:hover {
-    color: #606161;
+    color: white;
 }
 .navbar.horizontal-menu .daterange-inline {
     border-color: #212121;
@@ -341,9 +360,42 @@
 .navbar.horizontal-menu .daterange-inline:hover {
     color: white;
 }
+.navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > a {
+    background-color: #2F2F2F !important;
+    border-color: #212121;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li.user-profile > a:focus {
+    background-color: transparent;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > .dropdown-menu {
+    background-color: #2F2F2F;
+    border-color: #212121;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li a {
+    border-bottom: 1px solid #212121;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li a:hover {
+    color: white;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li.last {
+    background-color: transparent;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.user-profile-menu li.last:after {
+    display: none;
+}
 .sidebar-menu.collapsed .main-menu > li {
     padding-bottom: 30px;
 }
+@media screen and (max-width: 768px) {
+    .navbar.horizontal-menu .navbar-inner > .nav.nav-userinfo {
+        background-color: transparent;
+    }
+    .navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > a {
+        border-top: 1px solid #212121;
+    }
+}
+
+
 ul.dropdown-menu.checkbox-list li {
     display: block;
     clear: both;
@@ -361,6 +413,10 @@ ul.dropdown-menu.checkbox-list li:hover {
 .dxc-tooltip {
     z-index: 999;
 }
+.ps-container {
+    overflow: hidden;
+}
+
 
 @media screen and (max-width: 1199px) {
     .trends-page-container .col-lg-7 {

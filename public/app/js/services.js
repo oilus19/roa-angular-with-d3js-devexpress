@@ -214,9 +214,9 @@ angular.module('resultsonair.services', []).
 		this.prepareHorizontalMenu = function()
 		{
 			var dashboard    = this.addItem('Dashboard', 		'/app/dashboard', 			'');
-			var performance  = this.addItem('Performance', 		'/app/performance', 		'');
-			var roi    		 = this.addItem('ROI', 				'/app/roi', 				'');
 			var trends    	 = this.addItem('Trends', 			'/app/trends', 				'');
+			var roi    		 = this.addItem('ROI', 				'/app/roi', 				'');
+			var performance  = this.addItem('Performance', 		'/app/performance', 		'');
 			var raw_breakdown    = this.addItem('Breakdown',	'/app/breakdown', 			'');
 			var champaign_planner    = this.addItem('Planner',	'/app/planner', 			'');
 

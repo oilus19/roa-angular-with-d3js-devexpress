@@ -64,14 +64,10 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">Performance Overview</h3>
 				</div>
-				<div class="panel-body" style="height: 570px;">
-					<div id="bar-6" style="height: 520px; width: 100%;"></div>
+				<div class="panel-body" style="height: 455px;">
+					<div id="bar-6" style="height: 405px; width: 100%;"></div>
 				</div>
 			</div>
-
-		</div>
-
-		<div class="col-lg-6">
 
 			<div class="row">
 				<div class="col-sm-4">
@@ -111,29 +107,35 @@
 				</div>
 			</div>
 
+		</div>
+
+		<div class="col-lg-6">
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Performance in Detail</h3>
 				</div>
-				<div style="height:445px; margin-top: 20px">
+				<div style="height:550px; margin-top: 20px">
 
-					<div class="table-responsive" data-pattern="priority-columns" data-add-focus-btn="false" data-sticky-table-header="true" data-add-display-all-btn="true">
-						<table id="result_table" class="table table-striped performance-table">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th data-priority="1">Ads</th>
-									<th data-priority="2">Budget</th>
-									<th data-priority="7">ROI</th>
-									<th data-priority="4">Revenue</th>
-									<th data-priority="5">Users</th>
-									<th data-priority="7">New Users</th>
-									<th data-priority="7">Conversions</th>
-								</tr>
-							</thead>
-							
-							<tbody></tbody>
-						</table>
+					<div id="performance_table_container">
+						<div class="table-responsive" data-pattern="priority-columns" data-add-focus-btn="false" data-sticky-table-header="true" data-add-display-all-btn="true">
+							<table id="result_table" class="table table-striped performance-table">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th data-priority="1">Ads</th>
+										<th data-priority="2">Budget</th>
+										<th data-priority="7">ROI</th>
+										<th data-priority="4">Revenue</th>
+										<th data-priority="5">Users</th>
+										<th data-priority="7">New Users</th>
+										<th data-priority="7">Conversions</th>
+									</tr>
+								</thead>
+								
+								<tbody></tbody>
+							</table>
+						</div>
 					</div>
 
 					<script>
@@ -145,16 +147,25 @@
 							cbr_replace();
 						}, 0);
 
-						$('.table-responsive').responsiveTable();
+						var $performance_table_container = $("#performance_table_container");
+						$performance_table_container.find(".table-responsive").responsiveTable();
 
-						$("#result_table, #result_table-clone").dataTable({
+						$performance_table_container.find("#result_table, #result_table-clone").dataTable({
 							dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
 							autoWidth: false,
 							paging: false,
 						});
 
-						$("#result_table").scroll(function(){
-							$("#result_table-clone").css("left",-$(this).scrollLeft());
+						var $table_wrapper = $performance_table_container.find("#result_table_wrapper");
+						$table_wrapper.perfectScrollbar();
+						$table_wrapper.scroll(function() {
+						    $performance_table_container.find("#result_table-clone_wrapper").css("margin-left",(-$(this).scrollLeft()).toString()+"px");
+						});
+						$(window).resize(function(){ 
+							$table_wrapper.perfectScrollbar('update');
+						});
+						$performance_table_container.find(".btn-toolbar, .btn-toolbar .dropdown-menu").click(function(){
+							$table_wrapper.perfectScrollbar('update');
 						});
 					});
 					</script>	

@@ -1,51 +1,52 @@
-<div class="row" ng-controller="BreakdownPageCtrl">
+<div ng-controller="BreakdownPageCtrl" class="row breakdown-page-container">
 
 	<div class="col-lg-6 mb-40">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				
-				<div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
-				
-					<table cellspacing="0" class="table table-small-font table-bordered table-striped breakdown-table">
-						<thead>
-							<tr>
-								<th>Campaign</th>
-								<th data-priority="1">Date</th>
-								<th data-priority="2">Time</th>
-								<th data-priority="3">Daypart</th>
-								<th data-priority="4">Creative</th>
-								<th data-priority="5">Length</th>
-								<th data-priority="6">Network</th>
-								<th data-priority="7">Channel</th>
-								<th data-priority="8">Region</th>
-								<th data-priority="9">Device</th>
-								<th data-priority="10">Users</th>
-								<th data-priority="11">New Users</th>
-								<th data-priority="12">Conversions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="item in dataset" ng-show="isVisible(item)">
-								<td>{{item.campaign}}</td>
-								<th>{{item.date}}</th>
-								<td>{{item.time}}</td>
-								<td>{{item.Daytime}}</td>
-								<td>{{item.creative}}</td>
-								<td>{{item.length || 0}}</td>
-								<th>{{item.network}}</th>
-								<td>{{item.channel}}</td>
-								<td>{{item.region}}</td>
-								<th>{{item.device}}</th>
-								<td>{{item.users}}</td>
-								<td>{{item.new_users}}</td>
-								<td>{{item.conversions}}</td>
-							</tr>	
-						</tbody>
-					</table>
-				</div>		
+				<div id="breakdown_table_container">
+					<div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+					
+						<table id="breakdown_table" cellspacing="0" class="table table-small-font table-bordered table-striped breakdown-table">
+							<thead>
+								<tr>
+									<th>Campaign</th>
+									<th data-priority="1">Date</th>
+									<th data-priority="2">Time</th>
+									<th data-priority="3">Daypart</th>
+									<th data-priority="4">Creative</th>
+									<th data-priority="5">Length</th>
+									<th data-priority="6">Network</th>
+									<th data-priority="7">Channel</th>
+									<th data-priority="8">Region</th>
+									<th data-priority="9">Device</th>
+									<th data-priority="10">Users</th>
+									<th data-priority="11">New Users</th>
+									<th data-priority="12">Conversions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in dataset" ng-show="isVisible(item)">
+									<td>{{item.campaign}}</td>
+									<th>{{item.date}}</th>
+									<td>{{item.time}}</td>
+									<td>{{item.Daytime}}</td>
+									<td>{{item.creative}}</td>
+									<td>{{item.length || 0}}</td>
+									<th>{{item.network}}</th>
+									<td>{{item.channel}}</td>
+									<td>{{item.region}}</td>
+									<th>{{item.device}}</th>
+									<td>{{item.users}}</td>
+									<td>{{item.new_users}}</td>
+									<td>{{item.conversions}}</td>
+								</tr>	
+							</tbody>
+						</table>
+					</div>
+				</div>	
 				
 				<script type="text/javascript">
-
 				jQuery(document).ready(function($)
 				{
 					setTimeout(function()
@@ -53,12 +54,31 @@
 						$(".checkbox-row input").addClass('cbr');
 						cbr_replace();
 					}, 0);
-				});
 
-				// This JavaScript Will Replace Checkboxes in dropdown toggles
-				jQuery(document).ready(function($)
-				{
-					$('.table-responsive').responsiveTable({addFocusBtn:false});
+					var $breakdown_table_container = $("#breakdown_table_container");
+					var $table_wrapper = $breakdown_table_container.find(".table-responsive");
+					$table_wrapper.responsiveTable({addFocusBtn:false});
+					$table_wrapper.perfectScrollbar();
+
+					function checkOffScreen() {
+						if (($table_wrapper.offset().top + $table_wrapper.height()) >= $(window).height()+$(window).scrollTop()) {
+							$table_wrapper.addClass('off-screen');
+						} else {
+							$table_wrapper.removeClass('off-screen');
+						}
+					}
+					checkOffScreen();
+
+					$(window).resize(function(){ 
+						$table_wrapper.perfectScrollbar('update');
+						checkOffScreen();
+					});
+					$breakdown_table_container.find(".btn-toolbar, .btn-toolbar .dropdown-menu").click(function(){
+						$table_wrapper.perfectScrollbar('update');
+					});
+					$(window).scroll(function(){
+						checkOffScreen();
+					});
 				});
 				</script>	
 
