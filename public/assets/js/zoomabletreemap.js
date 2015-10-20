@@ -135,6 +135,15 @@ function drawBarCharts(json_data){
           verticalAlignment: "bottom",
           horizontalAlignment: "center"
         },
+        tooltip: {
+            enabled: true,
+            location: "edge",
+            customizeTooltip: function (arg) {
+                return {
+                    text: arg.seriesName + ": " + arg.valueText
+                };
+            }
+        },
         pointClick: function(point) {
           point.isSelected() ? point.clearSelection() : point.select();
         }
