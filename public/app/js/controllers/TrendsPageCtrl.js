@@ -102,8 +102,8 @@ angular.module('resultsonair.controllers').
 					start = 3;
 					break;
 				case 'Month':
-					u = 15;
-					start = 7;
+					u = 30;
+					start = 15;
 					break;
 			}
 			result.push(dataSource[0]);
@@ -393,6 +393,11 @@ angular.module('resultsonair.controllers').
 									days: 1
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD');
+					            }
+							},
             			});
             			$scope.lineChart2.option({
             				dataSource: $scope.dataSource2,
@@ -402,6 +407,11 @@ angular.module('resultsonair.controllers').
 									days: 1
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD');
+					            }
+							},
             			});
             			$scope.lineChart3.option({
             				dataSource: $scope.dataSource3,
@@ -410,6 +420,11 @@ angular.module('resultsonair.controllers').
 								majorTickInterval: {
 									days: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD');
+					            }
 							},
             			});
             			break;
@@ -461,28 +476,43 @@ angular.module('resultsonair.controllers').
             			$scope.lineChart1.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource1, 'Month'),
             				scale: {
-								minorTickInterval: "week",
+								minorTickInterval: "month",
 								majorTickInterval: {
-									days: 7
+									months: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM');
+					            }
 							},
             			});
             			$scope.lineChart2.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource2, 'Month'),
             				scale: {
-								minorTickInterval: "week",
+								minorTickInterval: "month",
 								majorTickInterval: {
-									days: 7
+									months: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM');
+					            }
 							},
             			});
             			$scope.lineChart3.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource3, 'Month'),
             				scale: {
-								minorTickInterval: "week",
+								minorTickInterval: "month",
 								majorTickInterval: {
-									days: 7
+									months: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM');
+					            }
 							},
             			});
             			break;
