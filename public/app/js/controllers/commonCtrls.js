@@ -248,6 +248,16 @@ angular.module('resultsonair.controllers', []).
 			$(".navbar.horizontal-menu .navbar-nav .hover").removeClass('hover'); // Close Submenus when item is selected
 		});
 
+		$('.daterange-filter .daterange').on('apply.daterangepicker', function(ev, picker) {
+		    //console.log(picker.startDate.format('YYYY-MM-DD'));
+		    //console.log(picker.endDate.format('YYYY-MM-DD'));
+		    var startDate = picker.startDate.format('YYYY-MM-DD');
+		    var endDate = picker.endDate.format('YYYY-MM-DD');
+		    if(document.getElementById('dashboard_page'))
+		    	angular.element(document.getElementById('dashboard_page')).scope().dateRangeChanged(startDate, endDate);
+
+		});
+
 		// Trigger menu setup
 		$timeout(setup_horizontal_menu, 1);
 	}).
