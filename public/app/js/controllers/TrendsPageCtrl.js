@@ -342,28 +342,24 @@ angular.module('resultsonair.controllers').
 			$scope.revenue = Math.round($scope.getTotal(e, $scope.dataSource3, 'revenue'))*188;
 			if($scope.revenue>1437435) $scope.revenue = 1437435;
 
-			//var usersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.users+'" data-decimal="," data-duration="1.5">'+$scope.users+'</label>');
-			//$element.find('.users-counter').html($compile(usersCounterHtml)($scope));
-			var newUsersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.new_users+'" data-decimal="," data-duration="1.5">'+$scope.new_users+'</label>');
-			$element.find('.newusers-counter').html($compile(newUsersCounterHtml)($scope));
-			var conversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.conversion+'" data-decimal="," data-duration="1.5">'+$scope.conversion+'</label>');
-			$element.find('.conversion-counter').html($compile(conversionCounterHtml)($scope));
-			var cpuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpu+'</label>');
-			$element.find('.cpu-counter').html($compile(cpuCounterHtml)($scope));
-			var cpnuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpnu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpnu+'</label>');
-			$element.find('.cpnu-counter').html($compile(cpnuCounterHtml)($scope));
-			var cpcCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpc+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpc+'</label>');
-			$element.find('.cpc-counter').html($compile(cpcCounterHtml)($scope));
-			var budgetCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.budget+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.budget+'</label>');
-			$element.find('.budget-counter').html($compile(budgetCounterHtml)($scope));
-			var adsCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.ads+'" data-decimal="," data-duration="1.5">'+$scope.ads+'</label>');
-			$element.find('.ads-counter').html($compile(adsCounterHtml)($scope));
-			var revenueCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.revenue+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.revenue+'</label>');
-			$element.find('.revenue-counter').html($compile(revenueCounterHtml)($scope));
-
-
 			var usersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.users+'" data-decimal="," data-duration="1.5">'+$scope.users+'</label>');
 			$compile($element.find('.users-counter').html(usersCounterHtml))($scope);
+			var newUsersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.new_users+'" data-decimal="," data-duration="1.5">'+$scope.new_users+'</label>');
+			$compile($element.find('.newusers-counter').html(newUsersCounterHtml))($scope);
+			var conversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.conversion+'" data-decimal="," data-duration="1.5">'+$scope.conversion+'</label>');
+			$compile($element.find('.conversion-counter').html(conversionCounterHtml))($scope);
+			var cpuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpu+'</label>');
+			$compile($element.find('.cpu-counter').html(cpuCounterHtml))($scope);
+			var cpnuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpnu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpnu+'</label>');
+			$compile($element.find('.cpnu-counter').html(cpnuCounterHtml))($scope);
+			var cpcCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpc+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpc+'</label>');
+			$compile($element.find('.cpc-counter').html(cpcCounterHtml))($scope);
+			var budgetCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.budget+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.budget+'</label>');
+			$compile($element.find('.budget-counter').html(budgetCounterHtml))($scope);
+			var adsCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.ads+'" data-decimal="," data-duration="1.5">'+$scope.ads+'</label>');
+			$compile($element.find('.ads-counter').html(adsCounterHtml))($scope);
+			var revenueCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.revenue+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.revenue+'</label>');
+			$compile($element.find('.revenue-counter').html(revenueCounterHtml))($scope);
 		}
 
 		$scope.updateTable = function(e){
