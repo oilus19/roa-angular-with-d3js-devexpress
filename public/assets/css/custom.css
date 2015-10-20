@@ -351,6 +351,7 @@ p {
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 14px;
     margin: 0px;
+    color: white;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;
