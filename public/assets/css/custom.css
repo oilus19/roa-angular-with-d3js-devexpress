@@ -345,10 +345,12 @@ p {
     padding: 0;
     position: absolute;
     left: 67%;
-    line-height: 30px;
+    bottom: 10px;
+    line-height: 16px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 14px;
+    margin: 0px;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;

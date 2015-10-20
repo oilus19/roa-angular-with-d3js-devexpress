@@ -348,11 +348,11 @@ angular.module('resultsonair.controllers').
 			$compile($element.find('.newusers-counter').html(newUsersCounterHtml))($scope);
 			var conversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.conversion+'" data-decimal="," data-duration="1.5">'+$scope.conversion+'</label>');
 			$compile($element.find('.conversion-counter').html(conversionCounterHtml))($scope);
-			var cpuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpu+'</label>');
+			var cpuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpu+'" data-decimal="," data-duration="1.5">'+$scope.cpu+'</label>');
 			$compile($element.find('.cpu-counter').html(cpuCounterHtml))($scope);
-			var cpnuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpnu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpnu+'</label>');
+			var cpnuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpnu+'" data-decimal="," data-duration="1.5">'+$scope.cpnu+'</label>');
 			$compile($element.find('.cpnu-counter').html(cpnuCounterHtml))($scope);
-			var cpcCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpc+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpc+'</label>');
+			var cpcCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpc+'" data-decimal="," data-duration="1.5">'+$scope.cpc+'</label>');
 			$compile($element.find('.cpc-counter').html(cpcCounterHtml))($scope);
 			var budgetCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.budget+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.budget+'</label>');
 			$compile($element.find('.budget-counter').html(budgetCounterHtml))($scope);
