@@ -98,7 +98,7 @@ angular.module('resultsonair.controllers').
 							var date_base = new Date($scope.first_day);
 							var date_diff = Math.round((date_current-date_base)/(1000*60*60*24));
 							if(date_diff % 2 == 0)
-								return moment(date_current).format("MMMM D");
+								return moment(date_current).format("MMM D");
 							else
 								return null;
 						}
