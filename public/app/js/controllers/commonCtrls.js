@@ -188,7 +188,7 @@ angular.module('resultsonair.controllers', []).
 			$scope.isFullscreen = Fullscreen.isEnabled() ? true : false;
 		}
 	}).
-	controller('SidebarMenuCtrl', function($scope, $rootScope, $menuItems, $timeout, $location, $state, $layout)
+	controller('SidebarMenuCtrl', function($scope, $element, $rootScope, $menuItems, $timeout, $location, $state, $layout)
 	{
 
 		// Menu Items
@@ -210,10 +210,12 @@ angular.module('resultsonair.controllers', []).
 
 		ps_init(); // perfect scrollbar for sidebar
 
-		$scope.exportCSV = function() {
-			if($($rootScope.exportTableSelector).length>0)
-				$($rootScope.exportTableSelector).tableExport({type:'csv', escape:'false'});
-		}		
+		$element.find(".export-csv-btn").click(function(){
+			if($($rootScope.exportTableSelector).length>0) {
+				//$($rootScope.exportTableSelector).tableExport({type:'csv', escape:'false'});
+				exportTableToCSV.apply(this, [$($rootScope.exportTableSelector), 'export.csv']);
+			}
+		});		
 		$scope.exportExcel = function() {
 			if($($rootScope.exportTableSelector).length>0)
 				$($rootScope.exportTableSelector).tableExport({type:'excel', escape:'false'});
