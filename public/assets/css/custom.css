@@ -306,32 +306,49 @@ p {
 .trends-page-container .trend-table thead th {
     width: 100px;
 }
+.trends-page-container .counter-buttons .xe-counter-block {
+    margin-bottom: 14px;
+}
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-    height: 190px;
-    width: 180px;
+    display: block;
     margin: 0px auto;
     background: none;
+    padding: 10px 20px;
+    position: relative;
 }
-.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-upper-inner {
-    display: table-cell;
-    vertical-align: middle;
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-upper-inner:after {
+    clear: both;
+    content: '';
+    display: block;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
     display: block;
-    font-size: 40px;
+    font-size: 30px;
     padding-left: 10px;
+    line-height: 30px;
+    float: left;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .num label {
+    margin-bottom: 0;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon {
     padding: 0;
+    float: left;
+    width: 50px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon i {
     background: none;
+    line-height: 30px;
+    height: 30px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
     padding: 0;
+    position: absolute;
+    left: 67%;
+    line-height: 30px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
-    font-size: 16px;
+    font-size: 14px;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;
@@ -513,25 +530,6 @@ ul.dropdown-menu.checkbox-list li:hover {
 }
 
 
-@media screen and (min-width: 1400px) and (max-width: 1699px) {
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-        width: 140px;
-    }
-}
-@media screen and (min-width: 1200px) and (max-width: 1399px) {
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-        width: 150px;
-    }
-}
-@media screen and (min-width: 1200px) {
-    .trends-page-container .counter-buttons .col-sm-4 {
-    }
-}
-@media screen and (max-width: 1199px) {
-    .trends-page-container .col-lg-7 {
-        padding-left: 15px;
-    }
-}
 @media screen and (max-width: 767px) {
     .lockscreen-page {
         padding-top: 150px;
@@ -584,9 +582,6 @@ ul.dropdown-menu.checkbox-list li:hover {
     .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
         padding-top: 0;
     }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-        height: 180px;
-    }
     .trends-page-container .range-chart-container .dx-visibility-change-handler {
         height: 140px !important;
     }
@@ -609,7 +604,4 @@ ul.dropdown-menu.checkbox-list li:hover {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1000px) {
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
-        font-size: 30px;
-    }
 }
