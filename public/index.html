@@ -57,12 +57,15 @@
 
 	<horizontal-menu ng-if="layoutOptions.horizontalMenu.isVisible"></horizontal-menu>
 
-	<div class="page-container" ui-view></div>
 
+	<div class="page-container" ui-view></div>
+	
 	<!-- Remove this code if you want to disable Loading Overlay in the beginning of document loading -->
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
+
+
 
 
 	<!-- Bottom Scripts -->
@@ -99,5 +102,7 @@
 	<!-- JavaScripts initializations and stuff -->
 	<script src="app/js/resultsonair-custom.js"></script>
 
+
+	<div id="no_data_overlay" style="position:fixed; left:0px; right:0px; top: 0px; bottom: 0px; z-index:10000; width:300px; height:50px; margin:auto; text-align:center; background-color:#000000; color:#FFFFFF; opacity:0.7; line-height:50px; display:none">No campaigns during this period.</div>
 </body>
 </html>

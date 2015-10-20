@@ -13,6 +13,10 @@ angular.module('resultsonair.controllers').
 	    	var request_url = $scope.url+"?campaign_id=" + $scope.campaign_id + "&start_date=" + $scope.start_date + "&end_date=" + $scope.end_date;
 	    	console.log(request_url);
 	    	$.getJSON(request_url, function(res) {
+	    		if (res.daily_revenue.length == 0) {
+	    			$("#no_data_overlay").fadeIn(1000).delay(1000).fadeOut(1000);
+	    			return;
+	    		}
 		    	$scope.dataset = res.data;
 		    	$scope.revenueFromTV = res.revenue;
 		    	$scope.returnOnInvestment = Math.floor(res.avg_roi*100)/100;
@@ -94,7 +98,7 @@ angular.module('resultsonair.controllers').
 							var date_base = new Date($scope.first_day);
 							var date_diff = Math.round((date_current-date_base)/(1000*60*60*24));
 							if(date_diff % 2 == 0)
-								return moment(date_current).format("MMMM D");
+								return moment(date_current).format("MMM D");
 							else
 								return null;
 						}
