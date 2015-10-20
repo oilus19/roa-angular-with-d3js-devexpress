@@ -399,7 +399,7 @@
 .navbar.horizontal-menu .daterange-inline {
     border-color: #212121;
     background-color: #2F2F2F;
-    ;
+    width: 210px;
 }
 .navbar.horizontal-menu .daterange-inline:hover {
     color: white;
