@@ -6,7 +6,7 @@ angular.module('resultsonair.controllers').
 
 
 		$scope.filter1 = 'networks';
-		$scope.filter3 = "users"
+		$scope.filter3 = "users";
 		var w = angular.element($window);
 
 		w.bind('resize', function () {

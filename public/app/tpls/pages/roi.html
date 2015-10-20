@@ -1,6 +1,6 @@
-<div ng-controller="RoiPageCtrl">
+<div ng-controller="RoiPageCtrl" class="roi-page-container" id="roi_page">
 
-	<div style="padding:20px 20px 10px; background:white; margin-bottom: 30px">
+	<div id="roi_toolbar">
 		<div class="btn-toolbar row">
 			<div class="col-md-8">
 				<div class="btn-group" data-toggle="buttons">
@@ -64,7 +64,7 @@
 
 			<div class="row">
 				<div class="col-sm-8">
-					<div style="margin-top:20px" class="xe-widget xe-counter" xe-counter data-count="" data-from="0" data-to="400" data-prefix="Budget: $" data-duration="1">
+					<div class="xe-widget xe-counter budget-counter" xe-counter data-count="" data-from="0" data-to="400" data-prefix="Budget: $" data-duration="1">
 						<div class="xe-upper">
 							<div class="xe-icon">
 								<i class="linecons-cloud"></i>
@@ -85,7 +85,7 @@
 
 			
 
-			<div class="panel panel-default">
+			<div class="panel panel-default" id="returns_panel">
 				<div class="panel-heading">
 					<h3 class="panel-title">Returns</h3>
 				</div>
@@ -99,7 +99,7 @@
 							
 						});
 					</script>
-					<div style="height:450px; width:100%; overflow : auto;"><div id="bar-5" style="height: 450px; width: 100%;">
+					<div id="results_bar_container"><div id="bar-5">
 					</div></div>
 				</div>
 			</div>

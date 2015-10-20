@@ -263,6 +263,20 @@ p {
 .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 12px;
 }
+.dashboard-page-container #pageviews-visitors-chart {
+    height: 453px; 
+    padding: 10px 10px 20px;
+}
+.dashboard-page-container #gauge-1 {
+    height: 310px; 
+    width: 100%;
+}
+.dashboard-page-container .xe-widget.xe-map-stats .xe-details > .xe-label h3 {
+    white-space: nowrap;
+}
+#recent_insights_panel {
+    min-height: 280px;
+}
 .trends-page-container .xe-counter-purple {
     background-color: #04b486 !important;
 }
@@ -288,37 +302,53 @@ p {
     background-color: #354651 !important;
 }
 .trends-page-container .range-chart-container {
-    padding-left: 50px;
 }
 .trends-page-container .trend-table thead th {
     width: 100px;
 }
+.trends-page-container .counter-buttons .xe-counter-block {
+    margin-bottom: 14px;
+}
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-    height: 190px;
-    width: 180px;
+    display: block;
     margin: 0px auto;
     background: none;
+    padding: 10px 20px;
+    position: relative;
 }
-.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-upper-inner {
-    display: table-cell;
-    vertical-align: middle;
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-upper-inner:after {
+    clear: both;
+    content: '';
+    display: block;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
     display: block;
-    font-size: 40px;
+    font-size: 30px;
     padding-left: 10px;
+    line-height: 30px;
+    float: left;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .num label {
+    margin-bottom: 0;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon {
     padding: 0;
+    float: left;
+    width: 50px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon i {
     background: none;
+    line-height: 30px;
+    height: 30px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
     padding: 0;
+    position: absolute;
+    left: 67%;
+    line-height: 30px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
-    font-size: 16px;
+    font-size: 14px;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;
@@ -368,10 +398,27 @@ p {
     position: absolute;
     right: 10px;
 }
+#roi_toolbar {
+    padding: 20px 20px 10px;
+    background: #FFF none repeat scroll 0% 0%;
+    margin-bottom: 30px;
+} 
+.roi-page-container .budget-counter {
+    margin-top: 20px;
+}
 #breakdown_table_container .table-responsive.off-screen.ps-container.ps-active-x > .ps-scrollbar-x-rail {
     position: fixed !important;
     bottom: 3px;
     left: 60px !important;
+}
+#results_bar_container {
+    height:450px; 
+    width:100%; 
+    overflow : auto;
+}
+#results_bar_container #bar-5 {
+    height: 450px; 
+    width: 100%;
 }
 .ms-container {
     max-width: 100%;
@@ -472,49 +519,6 @@ ul.dropdown-menu.checkbox-list li:hover {
     overflow: hidden;
 }
 
-
-
-@media screen and (min-width: 1400px) and (max-width: 1699px) {
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-        width: 140px;
-    }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
-        font-size: 32px;
-    }
-}
-@media screen and (min-width: 1200px) and (max-width: 1399px) {
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
-        width: 150px;
-    }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
-        white-space: normal;
-    }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
-        font-size: 14px;
-    }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
-        font-size: 26px;
-    }
-
-}
-@media screen and (min-width: 1200px) {
-    .trends-page-container .counter-buttons .col-sm-4 {
-        padding: 0 5px;
-    }
-}
-@media screen and (max-width: 1199px) {
-    .trends-page-container .col-lg-7 {
-        padding-left: 15px;
-    }
-}
-@media screen and (max-width: 767px) {
-    .lockscreen-page {
-        padding-top: 150px;
-    }
-    .lockscreen-page .page-container {
-        position: static;
-    }
-}
 .lockscreen-page .login-container .logo {
     position: absolute;
     top: 30px;
@@ -523,4 +527,81 @@ ul.dropdown-menu.checkbox-list li:hover {
     -webkit-box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05);
     -moz-box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05);
+}
+
+
+@media screen and (max-width: 767px) {
+    .lockscreen-page {
+        padding-top: 150px;
+    }
+    .lockscreen-page .page-container {
+        position: static;
+    }
+}
+@media screen and (min-width: 1440px) and (max-width: 1699px) {
+    .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper {
+        height: 128px;
+    }
+    .dashboard-page-container #pageviews-visitors-chart {
+        height: 423px;
+    }
+    .dashboard-page-container #gauge-1 {
+        height: 280px;
+    }
+    #roi_toolbar {
+        margin-bottom: 20px;
+    }
+    .roi-page-container .budget-counter {
+        margin-top: 10px;
+    }
+    #returns_panel {
+        margin-bottom: 20px;   
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1439px) {
+    .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper {
+        height: 110px;
+    }
+    .dashboard-page-container #pageviews-visitors-chart {
+        height: 369px;
+    }
+    .dashboard-page-container #gauge-1 {
+        height: 226px;
+    }
+    .dashboard-page-container .xe-widget.xe-map-stats {
+        height: 280px;
+    }
+    #recent_insights_panel {
+        min-height: 280px;
+        padding-bottom: 0;
+    }
+    #recent_insights_panel .panel-body {
+        padding-top: 10px;
+    }
+    .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon,
+    .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
+        padding-top: 0;
+    }
+    .trends-page-container .range-chart-container .dx-visibility-change-handler {
+        height: 140px !important;
+    }
+    .roi-page-container #chart {
+        height: 420px !important;
+    }
+    #results_bar_container {
+        height:323px; 
+    }
+    #results_bar_container #bar-5 {
+        height: 323px
+    }
+    .roi-page-container .xe-widget.xe-counter .xe-icon {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .roi-page-container .xe-widget.xe-counter .xe-label {
+        padding-right: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
 }

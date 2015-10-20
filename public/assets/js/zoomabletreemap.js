@@ -62,7 +62,7 @@ function getHexFromName(parent_value, value,strength){
 var original_width = 0;
 var transition_element;
 function resizeTreemap(element, json_data){
-	var margin = {top: 50, right: 0, bottom: 0, left: 0},
+	var margin = {top: 0, right: 0, bottom: 0, left: 0},
 	    width = element.width(),
 	    height = element.height() - margin.top - margin.bottom,
 	    formatNumber = d3.format(",d"),
@@ -73,16 +73,21 @@ function resizeTreemap(element, json_data){
 	    .range([0, width]);
 	d3.select("#chart").select("svg")
 	    .attr("width", width + margin.left + margin.right)
+      .attr("height", height)
 	    .style("margin-left", -margin.left + "px")
 	    .style("margin-right", -margin.right + "px")
   var svg = d3.select("#chart").selectAll("rect").call(rect);
   d3.select("#chart").selectAll("text").call(text);
-    function text(text) {
+  function text(text) {
+    console.log('123');
     text.attr("x", function(d) {if(d) return x(d.x) + 6; return 6;});
+    text.attr("y", function(d) {if(d) return y(d.y) + 6; return 6;});
   }
 	function rect(rect) {
     rect.attr("x", function(d) {if(d) return x(d.x); return margin.left;})
         .attr("width", function(d) {if(d) return x(d.x + d.dx) - x(d.x); return width;});
+    rect.attr("y", function(d) {if(d) return y(d.y); return margin.top;})
+        .attr("height", function(d) {if(d) return y(d.y + d.dy) - y(d.y); return height;});
   }
 
 }
