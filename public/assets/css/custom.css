@@ -302,7 +302,6 @@ p {
     background-color: #354651 !important;
 }
 .trends-page-container .range-chart-container {
-    padding-left: 50px;
 }
 .trends-page-container .trend-table thead th {
     width: 100px;
@@ -518,28 +517,14 @@ ul.dropdown-menu.checkbox-list li:hover {
     .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
         width: 140px;
     }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
-        font-size: 32px;
-    }
 }
 @media screen and (min-width: 1200px) and (max-width: 1399px) {
     .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
         width: 150px;
     }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
-        white-space: normal;
-    }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
-        font-size: 14px;
-    }
-    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
-        font-size: 26px;
-    }
-
 }
 @media screen and (min-width: 1200px) {
     .trends-page-container .counter-buttons .col-sm-4 {
-        padding: 0 5px;
     }
 }
 @media screen and (max-width: 1199px) {
@@ -620,5 +605,11 @@ ul.dropdown-menu.checkbox-list li:hover {
     }
     .roi-page-container .xe-widget.xe-counter .xe-label {
         padding-right: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
+        font-size: 30px;
     }
 }
