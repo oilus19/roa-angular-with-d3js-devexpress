@@ -165,30 +165,6 @@
 
 
 
-.xe-counter-purple {
-    background-color: #04b486 !important;
-}
-.xe-counter-blue {
-    background-color: #037e5e !important;
-}
-.xe-counter-pink {
-    background-color: #fed474 !important;
-}
-.xe-counter-turquoise {
-    background-color: #f1bd60 !important;
-}
-.xe-counter-orange {
-    background-color: #c18454 !important;
-}
-.xe-counter-yellow {
-    background-color: #abc7d9 !important;
-}
-.xe-counter-danger {
-    background-color: #4c6474 !important;
-}
-.xe-counter-info {
-    background-color: #354651 !important;
-}
 .xe-vertical-counter-purple {
     background-color: #04b486 !important;
 }
@@ -281,6 +257,30 @@
 }
 .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 12px;
+}
+.trends-page-container .xe-counter-purple {
+    background-color: #04b486 !important;
+}
+.trends-page-container .xe-counter-blue {
+    background-color: #037e5e !important;
+}
+.trends-page-container .xe-counter-pink {
+    background-color: #fed474 !important;
+}
+.trends-page-container .xe-counter-turquoise {
+    background-color: #f1bd60 !important;
+}
+.trends-page-container .xe-counter-orange {
+    background-color: #c18454 !important;
+}
+.trends-page-container .xe-counter-yellow {
+    background-color: #abc7d9 !important;
+}
+.trends-page-container .xe-counter-danger {
+    background-color: #4c6474 !important;
+}
+.trends-page-container .xe-counter-info {
+    background-color: #354651 !important;
 }
 .trends-page-container .range-chart-container {
     padding-left: 50px;
