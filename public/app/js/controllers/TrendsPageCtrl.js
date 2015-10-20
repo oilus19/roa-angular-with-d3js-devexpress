@@ -102,8 +102,8 @@ angular.module('resultsonair.controllers').
 					start = 3;
 					break;
 				case 'Month':
-					u = 15;
-					start = 7;
+					u = 30;
+					start = 15;
 					break;
 			}
 			result.push(dataSource[0]);
@@ -343,23 +343,23 @@ angular.module('resultsonair.controllers').
 			if($scope.revenue>1437435) $scope.revenue = 1437435;
 
 			var usersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.users+'" data-decimal="," data-duration="1.5">'+$scope.users+'</label>');
-			$element.find('.users-counter').html($compile(usersCounterHtml)($scope));
+			$compile($element.find('.users-counter').html(usersCounterHtml))($scope);
 			var newUsersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.new_users+'" data-decimal="," data-duration="1.5">'+$scope.new_users+'</label>');
-			$element.find('.newusers-counter').html($compile(newUsersCounterHtml)($scope));
+			$compile($element.find('.newusers-counter').html(newUsersCounterHtml))($scope);
 			var conversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.conversion+'" data-decimal="," data-duration="1.5">'+$scope.conversion+'</label>');
-			$element.find('.conversion-counter').html($compile(conversionCounterHtml)($scope));
+			$compile($element.find('.conversion-counter').html(conversionCounterHtml))($scope);
 			var cpuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpu+'</label>');
-			$element.find('.cpu-counter').html($compile(cpuCounterHtml)($scope));
+			$compile($element.find('.cpu-counter').html(cpuCounterHtml))($scope);
 			var cpnuCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpnu+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpnu+'</label>');
-			$element.find('.cpnu-counter').html($compile(cpnuCounterHtml)($scope));
+			$compile($element.find('.cpnu-counter').html(cpnuCounterHtml))($scope);
 			var cpcCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.cpc+'" data-decimal="," data-duration="1.5" data-prefix="$">$'+$scope.cpc+'</label>');
-			$element.find('.cpc-counter').html($compile(cpcCounterHtml)($scope));
+			$compile($element.find('.cpc-counter').html(cpcCounterHtml))($scope);
 			var budgetCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.budget+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.budget+'</label>');
-			$element.find('.budget-counter').html($compile(budgetCounterHtml)($scope));
+			$compile($element.find('.budget-counter').html(budgetCounterHtml))($scope);
 			var adsCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.ads+'" data-decimal="," data-duration="1.5">'+$scope.ads+'</label>');
-			$element.find('.ads-counter').html($compile(adsCounterHtml)($scope));
+			$compile($element.find('.ads-counter').html(adsCounterHtml))($scope);
 			var revenueCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.revenue+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.revenue+'</label>');
-			$element.find('.revenue-counter').html($compile(revenueCounterHtml)($scope));
+			$compile($element.find('.revenue-counter').html(revenueCounterHtml))($scope);
 		}
 
 		$scope.updateTable = function(e){
@@ -393,6 +393,11 @@ angular.module('resultsonair.controllers').
 									days: 1
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD');
+					            }
+							},
             			});
             			$scope.lineChart2.option({
             				dataSource: $scope.dataSource2,
@@ -402,6 +407,11 @@ angular.module('resultsonair.controllers').
 									days: 1
 								}
 							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD');
+					            }
+							},
             			});
             			$scope.lineChart3.option({
             				dataSource: $scope.dataSource3,
@@ -410,6 +420,11 @@ angular.module('resultsonair.controllers').
 								majorTickInterval: {
 									days: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM DD');
+					            }
 							},
             			});
             			break;
@@ -461,28 +476,43 @@ angular.module('resultsonair.controllers').
             			$scope.lineChart1.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource1, 'Month'),
             				scale: {
-								minorTickInterval: "week",
+								minorTickInterval: "month",
 								majorTickInterval: {
-									days: 7
+									months: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM');
+					            }
 							},
             			});
             			$scope.lineChart2.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource2, 'Month'),
             				scale: {
-								minorTickInterval: "week",
+								minorTickInterval: "month",
 								majorTickInterval: {
-									days: 7
+									months: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM');
+					            }
 							},
             			});
             			$scope.lineChart3.option({
             				dataSource: $scope.getDataSourceFor($scope.dataSource3, 'Month'),
             				scale: {
-								minorTickInterval: "week",
+								minorTickInterval: "month",
 								majorTickInterval: {
-									days: 7
+									months: 1
 								}
+							},
+							sliderMarker: {
+								customizeText: function (value) {
+					                return moment(value.value).format('MMM');
+					            }
 							},
             			});
             			break;

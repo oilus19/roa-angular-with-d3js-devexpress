@@ -188,7 +188,7 @@ angular.module('resultsonair.controllers', []).
 			$scope.isFullscreen = Fullscreen.isEnabled() ? true : false;
 		}
 	}).
-	controller('SidebarMenuCtrl', function($scope, $rootScope, $menuItems, $timeout, $location, $state, $layout)
+	controller('SidebarMenuCtrl', function($scope, $element, $rootScope, $menuItems, $timeout, $location, $state, $layout)
 	{
 
 		// Menu Items
@@ -210,27 +210,18 @@ angular.module('resultsonair.controllers', []).
 
 		ps_init(); // perfect scrollbar for sidebar
 
-		$scope.exportCSV = function() {
-			if($($rootScope.exportTableSelector).length>0)
-				$($rootScope.exportTableSelector).tableExport({type:'csv', escape:'false'});
-		}		
-		$scope.exportExcel = function() {
-			if($($rootScope.exportTableSelector).length>0)
-				$($rootScope.exportTableSelector).tableExport({type:'excel', escape:'false'});
-		}
-		$scope.exportPNG = function() {
-			$.ajax({
-				type: 'POST',
-				data: {link: window.location.href},
-			    url: 'export_png',	
-			    success: function(res) {
-			    	console.log(res.link);
-			    	if(res.link!=''){
-			    		window.open(res.link, '_blank');
-			    	}
-			    }
-			});
-		}
+
+		$element.find(".export-csv-btn").click(function(){
+			if($($rootScope.exportTableSelector).length>0) {
+				exportTableToCSV.apply(this, [$($rootScope.exportTableSelector), 'export.csv']);
+			}
+		});		
+		$element.find(".export-excel-btn").click(function(){
+			if($($rootScope.exportTableSelector).length>0) {
+				exportTableToExcel.apply(this, [$($rootScope.exportTableSelector), 'export.xls']);
+			}
+		});	
+
 	}).
 	controller('HorizontalMenuCtrl', function($scope, $rootScope, $menuItems, $timeout, $location, $state)
 	{

@@ -4,6 +4,11 @@
  *
 */
 
+p {
+    color: #555;
+}
+
+
 // margins & paddings
 .m-auto {
     margin: auto;
@@ -165,7 +170,6 @@
 
 
 
-
 .xe-vertical-counter-purple {
     background-color: #04b486 !important;
 }
@@ -259,11 +263,57 @@
 .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 12px;
 }
+.trends-page-container .xe-counter-purple {
+    background-color: #04b486 !important;
+}
+.trends-page-container .xe-counter-blue {
+    background-color: #037e5e !important;
+}
+.trends-page-container .xe-counter-pink {
+    background-color: #fed474 !important;
+}
+.trends-page-container .xe-counter-turquoise {
+    background-color: #f1bd60 !important;
+}
+.trends-page-container .xe-counter-orange {
+    background-color: #c18454 !important;
+}
+.trends-page-container .xe-counter-yellow {
+    background-color: #abc7d9 !important;
+}
+.trends-page-container .xe-counter-danger {
+    background-color: #4c6474 !important;
+}
+.trends-page-container .xe-counter-info {
+    background-color: #354651 !important;
+}
 .trends-page-container .range-chart-container {
-    padding-left: 70px;
+    padding-left: 50px;
 }
 .trends-page-container .trend-table thead th {
     width: 100px;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper {
+    height: 190px;
+    width: 180px;
+    margin: 0px auto;
+    background: none;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon {
+    padding: 0;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon i {
+    background: none;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
+    padding: 0;
+    white-space: nowrap;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label .num {
+    font-size: 36px;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
+    font-size: 12px;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;
@@ -355,7 +405,7 @@
 .navbar.horizontal-menu .daterange-inline {
     border-color: #212121;
     background-color: #2F2F2F;
-    ;
+    width: 210px;
 }
 .navbar.horizontal-menu .daterange-inline:hover {
     color: white;
@@ -418,8 +468,32 @@ ul.dropdown-menu.checkbox-list li:hover {
 }
 
 
+
+@media screen and (min-width: 1400px) and (max-width: 1699px) {
+    .trends-page-container .counter-buttons .col-sm-4 {
+        padding: 0 5px;
+    }
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label .num {
+        font-size: 32px;
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .trends-page-container .counter-buttons .col-sm-4 {
+        padding: 0 5px;
+    }
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
+        width: 150px;
+    }
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
+        white-space: normal;
+    }
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label .num {
+        font-size: 26px;
+    }
+
+}
 @media screen and (max-width: 1199px) {
-    .trends-page-container .col-lg-7 {
+    .trends-page-container .col-lg-6 {
         padding-left: 15px;
     }
 }

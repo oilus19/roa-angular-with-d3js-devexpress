@@ -13,19 +13,46 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">Tracking code set up</div>
+				<div class="panel-title">Tracking Configuration</div>
 			</div>
 			
 			<div class="panel-body">
 				
 				<p>
-					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio 
+					ResultsOnAir has it's own tracking solution that gives us much more granular data than the usual web analytics tools are able to provide. Put this tracking code in your Tag Manager. This needs to be on all of your pages of your website.
 				</p>
 
 				<br/><br/>
 
 				<div class="form-group">
-					<textarea class="form-control" cols="10" style="height: 200px"></textarea>
+					<pre><textarea class="form-control" cols="10" style="height: 400px">
+<!-- Begin TV Tracking by ResultsOnAir  -->
+
+<script type="text/javascript">
+  var _paq = _paq || [];
+
+_paq.push(['setSiteId', 23);
+_paq.push(['setTrackerUrl', u+'resultsonair.php']);
+
+  (function() {
+    var u="//resultsonair.com/analytics/";
+
+    var userid = {'user': 'cID'};
+    var actionname = 'conversion';
+    var action = {'rev': '', 'prod': '', 'id': 'conversion', 'promo': ''};
+
+    _paq.push([function() { this.setCustomVariable(1, 'user', JSON2.stringify(userid), 'visit')}]);
+    _paq.push([function() { this.setCustomVariable(1, 'actionname', JSON2.stringify(action), 'page')}]);
+
+    _paq.push(['trackPageView']);
+
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'resultsonair.js'; s.parentNode.insertBefore(g,s);
+  })();
+
+</script>
+
+<!-- End TV Tracking by ResultsOnAir --></textarea></pre>
 				</div>
 			</div>
 
@@ -33,16 +60,67 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">Give access to Google Analytics</div>
+				<div class="panel-title">Filters for Paid Search Campaigns</div>
+			</div>
+			
+			<div class="panel-body">
+				
+				<p>TV-generated visitors arrive to your website mostly through direct, organic search and paid search. This is an optional feature to filter your paid search campaigns to include only the brand campaigns and / or the campaigns with most relevant keywords.</p>
+
+				<br/><br/>
+				
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Traffic Source</th>
+							<th>Campaign Name</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr>
+							<td>Bing Ads</td>
+							<td>Branding</td>
+						</tr>
+						
+						<tr>
+							<td>Google AdWords</td>
+							<td>Top Keywords</td>
+						</tr>
+						
+						<tr>
+							<td>Google AdWords</td>
+							<td>Seasonal</td>
+						</tr>
+						
+						<tr>
+							<td>Google AdWords</td>
+							<td>Regional Keywords</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">Google Analytics Access</div>
 			</div>
 			
 			<div class="panel-body">
 				
 				<p>
-					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio 
-				</p>
+				Historical web traffic data helps our algorithms to do detailed configuration already when you're just starting to use ResultsOnAir's tracking code. Please give read access rights to email address "tv@resultsonair.com" in your Google Analytics account. More data gives better results :)
+				<br />
+				<br />
+				<br /</p>
 
 			</div>
+
+
 
 		</div>
 

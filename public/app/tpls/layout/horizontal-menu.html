@@ -72,7 +72,7 @@
 		<ul class="nav nav-userinfo navbar-right" ng-class="{'mobile-is-visible': layoutOptions.userInfoNavVisible}">
 			
 			<li class="daterange-filter">
-				<div class="daterange daterange-inline add-ranges" data-format="MMMM D, YYYY" data-start-date="May 1, 2015" data-end-date="May 29, 2015">
+				<div class="daterange daterange-inline add-ranges" data-format="MMM D, YYYY" data-start-date="May 1, 2015" data-end-date="May 29, 2015">
 					<i class="fa-calendar"></i>
 					<span>May 1, 2015 - May 29, 2015</span>
 				</div>
@@ -96,10 +96,16 @@
 							Account
 						</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a ui-sref="app.team">
 							<i class="fa-group"></i>
 							Team
+						</a> -->
+					</li>
+					<li>
+						<a ui-sref="app.tracking-settings">
+							<i class="fa-wrench"></i>
+							Tracking Settings
 						</a>
 					</li>
 					<li>
@@ -109,23 +115,17 @@
 						</a>
 					</li>
 					<li>
-						<a ui-sref="app.tracking-settings">
-							<i class="fa-wrench"></i>
-							Tracking Settings
-						</a>
-					</li>
-					<li>
 						<a ui-sref="app.upload">
 							<i class="fa-upload"></i>
 							Upload Data
 						</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a ui-sref="app.faq">
 							<i class="fa-question"></i>
 							FAQ
 						</a>
-					</li>
+					</li> -->
 					<li class="last">
 						<a ui-sref="logout">
 							<i class="fa-lock"></i>
