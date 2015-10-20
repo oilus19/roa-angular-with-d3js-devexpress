@@ -89,12 +89,12 @@ angular.module('resultsonair.controllers', []).
 
 
 		$rootScope.currentUser = {
-			username: 	'Kristel Tuul',
-			email: 		'kristel@resultsonair.com',
-			password: 	'kristel ',
-			photo: 		'assets/images/kristel_tuul.png',
-			title: 		$sce.trustAsHtml('CMO at <strong>Resultsonair</strong>'), 
-			client: 	'ResultsOnAir' 
+			username: 	'Asahi',
+			email: 		'ryohei_shirai@asahi.co.jp',
+			password: 	'7#FrfSWcIcy8',
+			photo: 		'assets/images/asahi.png',
+			title: 		$sce.trustAsHtml('Team Account'), 
+			client: 	'Asahi Broadcasting Company' 
 		};
 
 
