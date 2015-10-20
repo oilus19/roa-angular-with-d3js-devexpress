@@ -13,6 +13,10 @@ angular.module('resultsonair.controllers').
 	    	var request_url = $scope.url+"?campaign_id=" + $scope.campaign_id + "&start_date=" + $scope.start_date + "&end_date=" + $scope.end_date;
 	    	console.log(request_url);
 	    	$.getJSON(request_url, function(res) {
+	    		if (res.daily_revenue.length == 0) {
+	    			$("#no_data_overlay").fadeIn(1000).delay(1000).fadeOut(1000);
+	    			return;
+	    		}
 		    	$scope.dataset = res.data;
 		    	$scope.revenueFromTV = res.revenue;
 		    	$scope.returnOnInvestment = Math.floor(res.avg_roi*100)/100;
