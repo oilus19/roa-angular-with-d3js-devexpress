@@ -4,23 +4,36 @@ angular.module('resultsonair.controllers').
 	controller('DashboardPageCtrl', function($scope, $rootScope, $sce, $compile, $element){
 		$rootScope.page_title = "Dashboard";
 
-		$.ajax({
-			type: 'POST',
-			data: {},
-		    url: 'dashboard_dataset',	
-		    success: function(res) {
+		$scope.url = 'http://roa-rest-prod.elasticbeanstalk.com/dashboard_info';
+		$scope.campaign_id = 12;
+		$scope.start_date = "2015-07-10";
+		$scope.end_date = "2015-08-10";
+
+	    $scope.loadPage = function(){
+	    	var request_url = $scope.url+"?campaign_id=" + $scope.campaign_id + "&start_date=" + $scope.start_date + "&end_date=" + $scope.end_date;
+	    	console.log(request_url);
+	    	$.getJSON(request_url, function(res) {
 		    	$scope.dataset = res.data;
 		    	$scope.revenueFromTV = res.revenue;
 		    	$scope.returnOnInvestment = Math.floor(res.avg_roi*100)/100;
 		    	$scope.costPerConversion = Math.floor(res.avg_cpc*100)/100;
-		    	$scope.daily_revenue_list = res.daily_revenue_list;
-		    	$scope.accumulated_revenue_list = res.accumulated_revenue_list;
-		    	$scope.max_revenue = res.max_revenue;
+		    	$scope.daily_revenue_list = res.daily_revenue;
+		    	$scope.first_day = $scope.daily_revenue_list[0]["date"];
 		    	$scope.initCounters();
 		    	$scope.initBarChart();
 		    	$scope.initRoiGraph();
-		    }
-		});
+	    	});
+	    }
+
+	    $scope.dateRangeChanged = function(start_date, end_date){
+	    	console.log(start_date);
+	    	$scope.start_date = start_date;
+	    	$scope.end_date = end_date;
+	    	$scope.loadPage();
+	    }
+
+	    $scope.loadPage();
+
 		$scope.initRoiGraph = function(){
 			var gauge = $element.find('#gauge-1').dxCircularGauge({
 				scale: {
@@ -46,9 +59,10 @@ angular.module('resultsonair.controllers').
 			var i = 0,
 				data_source = [];
 
-			for(i=0; i<29; i++)
+			for(i=0; i<$scope.daily_revenue_list.length; i++)
 			{
-				data_source.push({day: i, revenue: Number($scope.daily_revenue_list[i])||0});
+				if($scope.daily_revenue_list[i])
+					data_source.push({day: $scope.daily_revenue_list[i]["date"], revenue: Number($scope.daily_revenue_list[i]["revenue"])});
 			}
 
 			$element.find("#pageviews-visitors-chart").dxChart({
@@ -75,8 +89,14 @@ angular.module('resultsonair.controllers').
 				},
 				argumentAxis: {
 					label: {
-						customizeText: function () {
-							return this.value+1;
+						customizeText: function (arg) {
+							var date_current = new Date(arg.value);
+							var date_base = new Date($scope.first_day);
+							var date_diff = Math.round((date_current-date_base)/(1000*60*60*24));
+							if(date_diff % 2 == 0)
+								return moment(date_current).format("MMMM D");
+							else
+								return null;
 						}
 					}
 				},
@@ -84,7 +104,8 @@ angular.module('resultsonair.controllers').
 			        enabled: true,
 			        location: "edge",
 			        customizeTooltip: function (arg) {
-			        	var date = new Date(2015,4,arg.argument+1);
+			        	var date = new Date(arg.argument);
+
 			            return {
 			                text: moment(date).format("dddd, MMMM D, YYYY") + "<br/>Revenue: $" + arg.valueText + "<br/>Avg CpC: $25"
 			            };
