@@ -165,7 +165,30 @@
 
 
 
-
+.xe-counter-purple {
+    background-color: #04b486 !important;
+}
+.xe-counter-blue {
+    background-color: #037e5e !important;
+}
+.xe-counter-pink {
+    background-color: #fed474 !important;
+}
+.xe-counter-turquoise {
+    background-color: #f1bd60 !important;
+}
+.xe-counter-orange {
+    background-color: #c18454 !important;
+}
+.xe-counter-yellow {
+    background-color: #abc7d9 !important;
+}
+.xe-counter-danger {
+    background-color: #4c6474 !important;
+}
+.xe-counter-info {
+    background-color: #354651 !important;
+}
 .xe-vertical-counter-purple {
     background-color: #04b486 !important;
 }
@@ -260,10 +283,31 @@
     font-size: 12px;
 }
 .trends-page-container .range-chart-container {
-    padding-left: 70px;
+    padding-left: 50px;
 }
 .trends-page-container .trend-table thead th {
     width: 100px;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper {
+    height: 190px;
+    width: 180px;
+    margin: 0px auto;
+    background: none;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon {
+    padding: 0;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-icon i {
+    background: none;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
+    padding: 0;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label .num {
+    font-size: 36px;
+}
+.trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
+    font-size: 12px;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;
@@ -419,7 +463,7 @@ ul.dropdown-menu.checkbox-list li:hover {
 
 
 @media screen and (max-width: 1199px) {
-    .trends-page-container .col-lg-7 {
+    .trends-page-container .col-lg-6 {
         padding-left: 15px;
     }
 }
