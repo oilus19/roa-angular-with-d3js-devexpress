@@ -127,8 +127,7 @@ angular.module('resultsonair.directives', []).
 				var $el = angular.element(el),
 					sm = scrollMonitor.create(el);
 
-				sm.fullyEnterViewport(function()
-				{
+				function initXeCounter() {
 					var opts = {
 						useEasing: 		attrDefault($el, 'easing', true),
 						useGrouping:	attrDefault($el, 'grouping', true),
@@ -146,9 +145,20 @@ angular.module('resultsonair.directives', []).
 					counter 	= new countUp($count.get(0), from, to, decimals, duration, opts);
 
 					setTimeout(function(){ counter.start(); }, delay * 1000);
+				}
 
-					sm.destroy();
-				});
+				console.log($($el).offset().top);
+				if( false ){
+					console.log('123');
+					//initXeCounter();
+				}
+				else {
+					sm.fullyEnterViewport(function()
+					{
+						initXeCounter();
+						sm.destroy();
+					});
+				}
 			}
 		};
 	}).

@@ -342,8 +342,8 @@ angular.module('resultsonair.controllers').
 			$scope.revenue = Math.round($scope.getTotal(e, $scope.dataSource3, 'revenue'))*188;
 			if($scope.revenue>1437435) $scope.revenue = 1437435;
 
-			var usersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.users+'" data-decimal="," data-duration="1.5">'+$scope.users+'</label>');
-			$element.find('.users-counter').html($compile(usersCounterHtml)($scope));
+			//var usersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.users+'" data-decimal="," data-duration="1.5">'+$scope.users+'</label>');
+			//$element.find('.users-counter').html($compile(usersCounterHtml)($scope));
 			var newUsersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.new_users+'" data-decimal="," data-duration="1.5">'+$scope.new_users+'</label>');
 			$element.find('.newusers-counter').html($compile(newUsersCounterHtml)($scope));
 			var conversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.conversion+'" data-decimal="," data-duration="1.5">'+$scope.conversion+'</label>');
@@ -360,6 +360,10 @@ angular.module('resultsonair.controllers').
 			$element.find('.ads-counter').html($compile(adsCounterHtml)($scope));
 			var revenueCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.revenue+'" data-decimal="," data-prefix="$" data-duration="1.5">$'+$scope.revenue+'</label>');
 			$element.find('.revenue-counter').html($compile(revenueCounterHtml)($scope));
+
+
+			var usersCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.users+'" data-decimal="," data-duration="1.5">'+$scope.users+'</label>');
+			$compile($element.find('.users-counter').html(usersCounterHtml))($scope);
 		}
 
 		$scope.updateTable = function(e){
