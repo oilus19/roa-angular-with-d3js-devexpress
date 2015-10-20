@@ -11,16 +11,18 @@ angular.module('resultsonair.controllers').
 
 	    $scope.loadPage = function(){
 	    	var request_url = $scope.url+"?campaign_id=" + $scope.campaign_id + "&start_date=" + $scope.start_date + "&end_date=" + $scope.end_date;
-	    	console.log(request_url);
 	    	$.getJSON(request_url, function(res) {
+	    		console.log(res);
 	    		if (res.daily_revenue.length == 0) {
 	    			$("#no_data_overlay").fadeIn(1000).delay(1000).fadeOut(1000);
 	    			return;
 	    		}
-		    	$scope.dataset = res.data;
-		    	$scope.revenueFromTV = res.revenue;
-		    	$scope.returnOnInvestment = Math.floor(res.avg_roi*100)/100;
-		    	$scope.costPerConversion = Math.floor(res.avg_cpc*100)/100;
+
+		    	//$scope.dataset = res.data;
+		    	$scope.revenueFromTV = res.revenue_from_tv;
+		    	$scope.returnOnInvestment = Math.floor(res.roi*100)/100;
+		    	$scope.costPerConversion = Math.floor(res.cpc_avg*100)/100;
+		    	$scope.budget_roi = Math.floor(res.budget_roi*100)/100;
 		    	$scope.daily_revenue_list = res.daily_revenue;
 		    	$scope.first_day = $scope.daily_revenue_list[0]["date"];
 		    	$scope.initCounters();
@@ -56,7 +58,7 @@ angular.module('resultsonair.controllers').
 						{ startValue: 70, endValue: 100, color: '#8dc63f' },
 					]
 				},
-				value: 86
+				value: $scope.budget_roi
 			}).dxCircularGauge('instance');
 		}
 		$scope.initBarChart = function (){
@@ -118,13 +120,13 @@ angular.module('resultsonair.controllers').
 			});
 		}
 		$scope.initCounters = function(){
-			var revenueFromTVCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+"4050300"+'" data-prefix="$" data-duration="1.5">$0</label>');
+			var revenueFromTVCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.revenueFromTV+'" data-prefix="$" data-duration="1.5">$0</label>');
 			$element.find('.revenue-from-tv-counter').html($compile(revenueFromTVCounterHtml)($scope));
-			var returnOnInvestmentCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+"8.1"+'" data-suffix="x" data-duration="1.5">0k</label>');
+			var returnOnInvestmentCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.costPerConversion+'" data-suffix="x" data-duration="1.5">0k</label>');
 			$element.find('.return-on-investment-counter').html($compile(returnOnInvestmentCounterHtml)($scope));
-			var costPerConversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+"37.0"+'" data-prefix="$" data-duration="1.5">$0</label>');
+			var costPerConversionCounterHtml = $('<label xe-counter data-count="this" data-from="0" data-to="'+$scope.returnOnInvestment+'" data-prefix="$" data-duration="1.5">$0</label>');
 			$element.find('.cost-per-conversion-counter').html($compile(costPerConversionCounterHtml)($scope));
-			var budgetROIHtml = $('<div class="h1 text-secondary text-bold" xe-counter data-count="this" data-from="0" data-to="'+86+'" data-suffix="%" data-duration="1">0</div>');
+			var budgetROIHtml = $('<div class="h1 text-secondary text-bold" xe-counter data-count="this" data-from="0" data-to="'+$scope.budget_roi+'" data-suffix="%" data-duration="1">0</div>');
 			$element.find('.budget-roi').html($compile(budgetROIHtml)($scope));
 		};
 		$scope.initMap = function(){
