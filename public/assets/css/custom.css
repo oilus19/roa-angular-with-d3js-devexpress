@@ -4,6 +4,11 @@
  *
 */
 
+p {
+    color: #555;
+}
+
+
 // margins & paddings
 .m-auto {
     margin: auto;
