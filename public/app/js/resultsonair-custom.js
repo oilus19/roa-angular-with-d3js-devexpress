@@ -891,7 +891,7 @@ function between(randNumMin, randNumMax)
 
 function exportTableToCSV($table, filename) {
 	var $ = jQuery;
-    var $rows = $table.find('tr:has(td,th)'),
+    var $rows = $table.find('tr:has(td,th)').filter(':visible'),
 
         // Temporary delimiter characters unlikely to be typed by keyboard
         // This is to avoid accidentally splitting the actual contents
@@ -905,7 +905,7 @@ function exportTableToCSV($table, filename) {
         // Grab text from table into CSV formatted string
         csv = '"' + $rows.map(function (i, row) {
             var $row = $(row),
-                $cols = $row.find('td,th');
+                $cols = $row.find('td,th').filter(':visible');
 
             return $cols.map(function (j, col) {
                 var $col = $(col),
@@ -936,8 +936,9 @@ function exportTableToExcel($table, filename) {
     var excel="<table>";
 	// Header
 	$table.find('thead').find('tr').each(function() {
+		if(!$(this).is(':visible')) return;
 		excel += "<tr>";
-		$(this).filter(':visible').find('th').each(function(index,data) {
+		$(this).find('th').each(function(index,data) {
 			if ($(this).css('display') != 'none'){				
 				excel += "<td>" + $(this).text().replace(/"/g, '""')+ "</td>";
 			}
@@ -950,9 +951,11 @@ function exportTableToExcel($table, filename) {
 	// Row Vs Column
 	var rowCount=1;
 	$table.find('tbody').find('tr').each(function() {
+		if(!$(this).is(':visible')) return;
+
 		excel += "<tr>";
 		var colCount=0;
-		$(this).filter(':visible').find('td').each(function(index,data) {
+		$(this).find('td').each(function(index,data) {
 			if ($(this).css('display') != 'none'){	
 				excel += "<td>"+$(this).text().replace(/"/g, '""')+"</td>";
 			}
