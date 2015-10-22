@@ -168,8 +168,12 @@ p {
 }
 
 
-
-
+.xe-widget.xe-counter .xe-label .num {
+    font-size: 2.15em;
+}
+.xe-widget.xe-counter-block .xe-upper .xe-icon i {
+    font-size: 2.46em;
+}
 .xe-vertical-counter-purple {
     background-color: #04b486 !important;
 }
@@ -254,7 +258,7 @@ p {
     padding-right: 0;
 }
 .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label .num {
-    font-size: 36px;
+    font-size: 2.77em;
 }
 .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 12px;
@@ -319,7 +323,7 @@ p {
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .num {
     display: block;
-    font-size: 30px;
+    font-size: 2.3em;
     padding-left: 10px;
     line-height: 30px;
     float: left;
@@ -345,7 +349,7 @@ p {
     display: table;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
-    font-size: 14px;
+    font-size: 1.07em;
     margin: 0px;
     color: white;
     display: table-cell;
@@ -546,6 +550,37 @@ ul.dropdown-menu.checkbox-list li:hover {
     }
 }
 @media screen and (min-width: 1200px) and (max-width: 1439px) {
+    body {
+        font-size: 11px;
+    }
+    h3, .h3 {
+        font-size: 18px;
+    }
+    h4, .h4 {
+        font-size: 14px;
+    }
+    .btn {
+        font-size: 12px;
+    }
+    .btn-lg, .btn-group-lg > .btn {
+        font-size: 14px;
+    }
+    .navbar.horizontal-menu {
+        font-size: 12px;
+    }
+    .panel .panel-heading,
+    .panel .panel-heading > .panel-title {
+        font-size: 15px;
+    }
+    table.table-small-font {
+        font-size: 11px;
+    }
+    .page-container .main-content .page-title .title-env .title {
+        font-size: 22px;
+    }
+    .xe-widget.xe-map-stats .xe-details .xe-map-data .xe-label {
+        font-size: 13px;
+    }
     .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper {
         height: 110px;
     }
