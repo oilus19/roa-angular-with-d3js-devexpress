@@ -214,10 +214,6 @@ p {
     left: auto !important;
     width: auto !important;
 }
-.navbar.horizontal-menu .navbar-inner .navbar-brand a.logo img.visible-xs {
-    position: absolute;
-    top: 10px;
-}
 .sidebar-menu.collapsed {
     width: 45px;
 }
@@ -342,16 +338,18 @@ p {
     height: 30px;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
-    padding: 0;
-    position: absolute;
-    left: 67%;
-    bottom: 10px;
-    line-height: 16px;
+    padding: 0px;
+    width: 30%;
+    float: left;
+    height: 30px;
+    display: table;
 }
 .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label span {
     font-size: 14px;
     margin: 0px;
     color: white;
+    display: table-cell;
+    vertical-align: middle;
 }
 .performance-page-container .table-responsive {
     overflow: hidden;
@@ -492,12 +490,6 @@ p {
     padding-bottom: 30px;
 }
 @media screen and (max-width: 768px) {
-    .navbar.horizontal-menu .navbar-inner > .nav.nav-userinfo {
-        background-color: transparent;
-    }
-    .navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > a {
-        border-top: 1px solid #212121;
-    }
 }
 
 
@@ -533,14 +525,6 @@ ul.dropdown-menu.checkbox-list li:hover {
 }
 
 
-@media screen and (max-width: 767px) {
-    .lockscreen-page {
-        padding-top: 150px;
-    }
-    .lockscreen-page .page-container {
-        position: static;
-    }
-}
 @media screen and (min-width: 1440px) and (max-width: 1699px) {
     .dashboard-page-container .counter-buttons .xe-counter-block .xe-upper {
         height: 128px;
@@ -606,5 +590,30 @@ ul.dropdown-menu.checkbox-list li:hover {
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1000px) {
+@media screen and (min-width: 550px) and (max-width: 1199px) {
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper {
+        max-width: 500px;
+    }
+    .trends-page-container .counter-buttons .xe-counter-block .xe-upper .xe-label {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar.horizontal-menu .navbar-inner .navbar-brand a.logo img {
+        position: absolute;
+        top: 10px;
+    }
+    .navbar.horizontal-menu .navbar-inner > .nav.nav-userinfo {
+        background-color: transparent;
+    }
+    .navbar.horizontal-menu .navbar-inner > .nav > li.user-profile.open > a {
+        border-top: 1px solid #212121;
+    }
+    .lockscreen-page {
+        padding-top: 150px;
+    }
+    .lockscreen-page .page-container {
+        position: static;
+    }
 }
