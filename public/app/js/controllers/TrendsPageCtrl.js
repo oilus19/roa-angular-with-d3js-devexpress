@@ -6,7 +6,13 @@ angular.module('resultsonair.controllers').
 		$rootScope.exportTableSelector = '#trend_table';
 
 		$scope.filter1 = 'Day';
-		$scope.tablerows = ['Breakfast','Coffee','Daytime','PrePeak','EarlyPeak','LatePeak','PostPeak','Total'];
+		$scope.tablerows = ['Breakfast','Coffee','Daytime',
+		// 'PrePeak',
+		'EarlyPeak',
+		// 'LatePeak',
+		'PostPeak',
+		// 'Total'
+		];
 		$scope.tabledataset = new Array(8);
         for (var i = 0; i < 8; i++) {
         	$scope.tabledataset[i] = new Array(8);
@@ -130,14 +136,14 @@ angular.module('resultsonair.controllers').
 				{ t: new Date(2015, 4, 7), users: 4543, new_users: 2726, conversion: 409 },
 				{ t: new Date(2015, 4, 8), users: 4123, new_users: 2474, conversion: 371 },
 				{ t: new Date(2015, 4, 9), users: 7659, new_users: 4595, conversion: 689 },
-				{ t: new Date(2015, 4, 10), users: 7932, new_users: 4759, conversion: 714 },
-				{ t: new Date(2015, 4, 11), users: 8123, new_users: 4874, conversion: 731 },
-				{ t: new Date(2015, 4, 12), users: 7642, new_users: 4585, conversion: 688 },
-				{ t: new Date(2015, 4, 13), users: 6534, new_users: 3920, conversion: 588 },
-				{ t: new Date(2015, 4, 14), users: 4324, new_users: 2594, conversion: 389 },
-				{ t: new Date(2015, 4, 15), users: 4002, new_users: 2401, conversion: 360 },
-				{ t: new Date(2015, 4, 16), users: 3987, new_users: 2392, conversion: 359 },
-				{ t: new Date(2015, 4, 17), users: 4322, new_users: 2593, conversion: 389 },
+				{ t: new Date(2015, 4, 10), users: 7932, new_users: 4159, conversion: 714 },
+				{ t: new Date(2015, 4, 11), users: 8123, new_users: 3874, conversion: 731 },
+				{ t: new Date(2015, 4, 12), users: 7642, new_users: 4285, conversion: 688 },
+				{ t: new Date(2015, 4, 13), users: 6534, new_users: 3420, conversion: 588 },
+				{ t: new Date(2015, 4, 14), users: 4324, new_users: 1594, conversion: 389 },
+				{ t: new Date(2015, 4, 15), users: 4002, new_users: 1401, conversion: 360 },
+				{ t: new Date(2015, 4, 16), users: 3987, new_users: 1892, conversion: 359 },
+				{ t: new Date(2015, 4, 17), users: 4322, new_users: 2193, conversion: 389 },
 				{ t: new Date(2015, 4, 18), users: 4103, new_users: 2462, conversion: 369 },
 				{ t: new Date(2015, 4, 19), users: 4569, new_users: 2741, conversion: 411 },
 				{ t: new Date(2015, 4, 20), users: 4354, new_users: 2612, conversion: 392 },

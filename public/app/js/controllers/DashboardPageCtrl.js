@@ -6,7 +6,7 @@ angular.module('resultsonair.controllers').
 
 		$scope.url = 'http://roa-rest-prod.elasticbeanstalk.com/dashboard_info';
 		$scope.campaign_id = 12;
-		$scope.start_date = "2015-07-10";
+		$scope.start_date = "2015-06-10";
 		$scope.end_date = "2015-08-10";
 
 	    $scope.loadPage = function(){
@@ -113,7 +113,7 @@ angular.module('resultsonair.controllers').
 			        	var date = new Date(arg.argument);
 
 			            return {
-			                text: moment(date).format("dddd, MMMM D, YYYY") + "<br/>Revenue: $" + arg.valueText + "<br/>Avg CpC: $25"
+			                text: moment(date).format("dddd, MMMM D, YYYY") + "<br/>Revenue: $" + arg.valueText // +  "<br/> Avg CpC: $25"
 			            };
 			        }
 			    }

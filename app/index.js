@@ -359,7 +359,7 @@ exports.trends_dataset = function(req, res){
         				y = 6;
         				break;
         		}
-        		data_matrix[x][y] += Math.round(Number(json_data[i]['cpnu'])) || 0;
+        		data_matrix[x][y] += Math.round(Number(json_data[i]['cpc'])) || 0;
                 count_matrix[x][y] ++;
         		limit--;
                 count++;
