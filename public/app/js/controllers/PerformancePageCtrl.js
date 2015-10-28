@@ -60,7 +60,7 @@ angular.module('resultsonair.controllers').
 
 			// TODO change start_date and end_date
 			var data = {
-				'start_date': '2015-07-01',
+				'start_date': '2015-0c-01',
 				'end_date': '2015-08-20',
 				'campaign_id': '2',
 				"dim_main" : $scope.filter1,
