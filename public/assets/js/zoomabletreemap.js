@@ -163,7 +163,7 @@ var $scope = 0;
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-function refreshScreen(data){
+function refreshScreen(data, metric){
   //var costPerConnectionCounterHtml = $('<label xe-counter data-count="this" data-from="'+previousCostBudget+'" data-to="'+costBudget+'" data-prefix="Budget: $" data-duration="1">Budget: $'+previousCostBudget+'</label>');
    if(Math.round(data["value"])>1000000)
       $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"]/100000)/10)+"M");
@@ -172,16 +172,51 @@ function refreshScreen(data){
     else
       $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"])));
 
-  $('.users-of-selected').html(numberWithCommas(data[user_type]));
-  $('.cpu-of-selected').html("$"+numberWithCommas(Math.round(data["cpu"])));
-  $('.revenue-of-selected').html("$"+numberWithCommas(data["revenue"]));
+    // TODO refactor
+    $('.users-of-selected').html(numberWithCommas(data[metric.metric_field]));
+    $('.users-of-selected').prev().text(metric.metric_name);
 
+    $('.cpu-of-selected').html("$"+numberWithCommas(Math.round(data[metric.cpn_field])));
+    $('.cpu-of-selected').prev().text(metric.cpn_name);
+
+    $('.revenue-of-selected').html("$"+numberWithCommas(data["revenue"]));
 }
 function drawZoomablTreemap(element, json_data, usertype, compile, scope){
-  $compile = compile;
-  $scope = scope;
-  user_type = usertype;
-  refreshScreen(json_data);
+    $compile = compile;
+    $scope = scope;
+    user_type = usertype;
+
+    var metric_current = function(){
+        var metric_name, metric_field, cpn_name, cpn_field;
+        switch($scope.filter3) {
+            case 'users':
+                metric_name = "Users";
+                metric_field = 'users';
+                cpn_name = "CpU";
+                cpn_field = 'cpu';
+                break;
+            case 'new_users':
+                metric_name = "New Users";
+                metric_field = 'new_users';
+                cpn_name = "CpNU";
+                cpn_field = 'cpnu';
+                break;
+            case 'conversions':
+                metric_name = "Conversions";
+                metric_field = 'conversions';
+                cpn_name = "CpC";
+                cpn_field = 'cpc';
+                break;
+        }
+        return {
+            metric_name: metric_name,
+            metric_field: metric_field,
+            cpn_name: cpn_name,
+            cpn_field: cpn_field
+        }
+    }();
+
+  refreshScreen(json_data, metric_current);
 	var margin = {top: 50, right: 0, bottom: 0, left: 0},
 	    width = element.width(),
 	    height = element.height() - margin.top - margin.bottom,
@@ -362,7 +397,7 @@ function drawZoomablTreemap(element, json_data, usertype, compile, scope){
       
       if (transitioning || !d) return;
 
-      refreshScreen(d);
+      refreshScreen(d, metric_current);
       transitioning = true;
 
       var g2 = display(d),

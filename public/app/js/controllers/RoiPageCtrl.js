@@ -25,7 +25,7 @@ angular.module('resultsonair.controllers').
 				"dim_opt" : $scope.filter2
 			};
 			var element = $("#chart");
-			var DATA_URL = 'http://localhost:3000/roi_info';
+			var DATA_URL = 'http://roa-rest-dev.elasticbeanstalk.com/roi_info';
 
 			data_from_api({
 				type: 'GET',
@@ -57,5 +57,10 @@ angular.module('resultsonair.controllers').
 			});
 			return main_dfd.promise();
 		}
+
+		$scope.$watch(function(scope){return scope.filter3}, function(){
+			$scope.LoadData();
+		});
+
 		$scope.LoadData();
 	});
