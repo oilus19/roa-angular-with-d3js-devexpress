@@ -1,3 +1,4 @@
+'use strict';
 function componentToHex(c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
@@ -18,7 +19,7 @@ function hslToHex(h, s, l){
             if(t < 1/2) return q;
             if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
             return p;
-        }
+        };
 
         var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
         var p = 2 * l - q;
@@ -79,7 +80,6 @@ function resizeTreemap(element, json_data){
   var svg = d3.select("#chart").selectAll("rect").call(rect);
   d3.select("#chart").selectAll("text").call(text);
   function text(text) {
-    console.log('123');
     text.attr("x", function(d) {if(d) return x(d.x) + 6; return 6;});
     text.attr("y", function(d) {if(d) return y(d.y) + 6; return 6;});
   }
@@ -98,7 +98,7 @@ function drawBarCharts(json_data){
     for (var i = 0; i < json_data.children.length; i++) {
       if(json_data.children[i].children)
         for (var j = 0; j < json_data.children[i].children.length; j++){
-          dataSource.push({group: json_data.children[i].name+", "+json_data.children[i].children[j].name, user: json_data.children[i].children[j][user_type]});
+          dataSource.push({group: json_data.children[i].children[j].name, user: json_data.children[i].children[j][user_type]});
         }
       else  
         dataSource.push({group: json_data.children[i].name, user: json_data.children[i][user_type]});
@@ -165,21 +165,19 @@ function numberWithCommas(x) {
 }
 function refreshScreen(data){
   //var costPerConnectionCounterHtml = $('<label xe-counter data-count="this" data-from="'+previousCostBudget+'" data-to="'+costBudget+'" data-prefix="Budget: $" data-duration="1">Budget: $'+previousCostBudget+'</label>');
-   console.log(data);
    if(Math.round(data["value"])>1000000)
-      $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"]/100000)/10)+"M"); 
+      $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"]/100000)/10)+"M");
     else if(Math.round(data["value"])>1000)
-      $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"]/100)/10)+"K"); 
+      $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"]/100)/10)+"K");
     else
-      $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"]))); 
+      $('.budget-of-selected').html("Budget: $"+numberWithCommas(Math.round(data["value"])));
 
   $('.users-of-selected').html(numberWithCommas(data[user_type]));
-  $('.cpu-of-selected').html("$"+numberWithCommas(Math.round(data["cpu"]/data["ads"]*10)/10));
+  $('.cpu-of-selected').html("$"+numberWithCommas(Math.round(data["cpu"])));
   $('.revenue-of-selected').html("$"+numberWithCommas(data["revenue"]));
 
 }
 function drawZoomablTreemap(element, json_data, usertype, compile, scope){
-  console.log(json_data);
   $compile = compile;
   $scope = scope;
   user_type = usertype;
@@ -290,54 +288,57 @@ function drawZoomablTreemap(element, json_data, usertype, compile, scope){
         .classed("children", true)
         .on("click", transition);
 
-    g.selectAll(".child")
-        .data(function(d) { return d._children || [d]; })
-      .enter().append("rect")
-        .attr("class", "child")
-        .call(rect)
-        .on('mousemove', function(d){
-          console.log("ppp");
-          var coordinates = [0, 0];
-          coordinates = d3.mouse(this);
+      function map_onmousemove(d){
+          "use strict";
+          var coordinates = d3.mouse(this);
           var x = coordinates[0];
           var y = coordinates[1];
           tooltip.style("left", (x+20)+"px");
           tooltip.style("top", (y+50)+"px");
           tooltip.style("background-color", function() {
               if(!d["parent"]["parent"])
-                return getHexFromName(d.color_tag, "", false);
-              return getHexFromName(d["parent"].color_tag, d.value, false);
-        
-          })
-          .style("position", "absolute");
+                  return getHexFromName(d.color_tag, "", false);
+              return getHexFromName(d["parent"].color_tag, Math.round(d.value), false);
+
+          }).style("position", "absolute");
+
           var cp_name = "cpc";
           var cp_display_name = "CpC";
-          console.log(user_type);
           if (user_type == "users")
           {
               cp_name = "cpu";
               cp_display_name = "cpu"
           }
-          else if(user_type == "new users")
+          else if(user_type == "new_users")
           {
-            cp_name = "cpnu";
-            cp_display_name = "CpNU";
+              cp_name = "cpnu";
+              cp_display_name = "CpNU";
           }
-            
-          if(!d["parent"]["parent"])
-            tooltip.html(d["name"]+
-              "<br>"+numberWithCommas(d[user_type])+" | "+Math.round((d[user_type]/d.parent[user_type])*10000)/100+"%" + " of total "+ user_type+
-              "<br>"+"$"+numberWithCommas(Math.round(d.value))+" | "+Math.round((d.value/d.parent.value)*10000)/100+"%" + " of total budget" +
-              "<br>"+"$"+numberWithCommas(Math.round(d[cp_name]/d[user_type]*10)/10)+" | "+Math.abs(Math.round((d[cp_name]/d[user_type]/d.parent[cp_name]*d.parent[user_type]*10000)/100-100))
-                + "% " + (d[cp_name]/d[user_type]-d.parent[cp_name]/d.parent[user_type]>0?"higher":"lower") + " of avg " + cp_display_name);
-          else
-            tooltip.html(d["name"]+
-              "<br>"+numberWithCommas(d[user_type])+" | "+Math.round((d[user_type]/d.parent.parent[user_type])*10000)/100+"%" +  " of total "+ user_type+
-              "<br>"+"$"+numberWithCommas(Math.round(d.value))+" | "+Math.round((d.value/d.parent.parent.value)*10000)/100+"%" + " of total budget"+
-              "<br>"+"$"+numberWithCommas(Math.round(d[cp_name]/d[user_type]*10)/10)+" | "+Math.abs(Math.round((d[cp_name]/d[user_type]/d.parent.parent[cp_name]*d.parent.parent[user_type]*10000)/100-100))
-                + "% " + (d[cp_name]/d[user_type]-d.parent.parent[cp_name]/d.parent.parent[user_type]>0?"higher":"lower") + " of avg " + cp_display_name);
+
+          var dd_parent;
+          if(!d["parent"]["parent"]) {
+              dd_parent = d.parent;
+          } else {
+              dd_parent = d.parent.parent;
+          }
+          var pieces = [
+              d["name"],
+              "<br>", numberWithCommas(d[user_type]), " | ", Math.round(d[user_type]/dd_parent[user_type]*100), "% of total ", user_type,
+              "<br>$", numberWithCommas(Math.round(d.budget)), " | ", Math.round(d.budget/dd_parent.budget*100), "% of total budget",
+              "<br>$", numberWithCommas(Math.round(d[cp_name])), " | ", Math.abs(Math.round(d[cp_name]/dd_parent[cp_name]*100)-100),
+              "% ", (d[cp_name]-dd_parent[cp_name]>0 ? "higher":"lower"), " of avg ", cp_display_name
+          ];
+          tooltip.html(pieces.join(''));
           tooltip.style('display', 'block');
-          tooltip.style('z-index', '1000');})
+          tooltip.style('z-index', '1000');
+      }
+
+    g.selectAll(".child")
+        .data(function(d) { return d._children || [d]; })
+        .enter().append("rect")
+        .attr("class", "child")
+        .call(rect)
+        .on('mousemove', map_onmousemove)
         .on('mouseout', function(d) {          
             tooltip.style('display', 'none');                           // NEW
           });      
@@ -345,48 +346,7 @@ function drawZoomablTreemap(element, json_data, usertype, compile, scope){
     g.append("rect")
         .attr("class", "parent")
         .call(rect)
-        .on('mousemove', function(d){
-          console.log("ppp");
-          var coordinates = [0, 0];
-          coordinates = d3.mouse(this);
-          var x = coordinates[0];
-          var y = coordinates[1];
-          tooltip.style("left", (x+20)+"px");
-          tooltip.style("top", (y+50)+"px");
-          tooltip.style("background-color", function() {
-              if(!d["parent"]["parent"])
-                return getHexFromName(d.color_tag, "", false);
-              return getHexFromName(d["parent"].color_tag, d.value, false);
-        
-          })
-          .style("position", "absolute");
-          var cp_name = "cpc";
-          var cp_display_name = "CpC";
-          if (user_type == "users")
-          {
-              cp_name = "cpu";
-              cp_display_name = "cpu"
-          }
-          else if(user_type == "new users")
-          {
-            cp_name = "cpnu";
-            cp_display_name = "CpNU";
-          }
-            
-          if(!d["parent"]["parent"])
-            tooltip.html(d["name"]+
-              "<br>"+numberWithCommas(d[user_type])+" | "+Math.round((d[user_type]/d.parent[user_type])*10000)/100+"%" + " of total "+ user_type+
-              "<br>"+"$"+numberWithCommas(Math.round(d.value))+" | "+Math.round((d.value/d.parent.value)*10000)/100+"%" + " of total budget" +
-              "<br>"+"$"+numberWithCommas(Math.round(d[cp_name]/d[user_type]*10)/10)+" | "+Math.abs(Math.round((d[cp_name]/d[user_type]/d.parent[cp_name]*d.parent[user_type]*10000)/100-100))
-                + "% " + (d[cp_name]/d[user_type]-d.parent[cp_name]/d.parent[user_type]>0?"higher":"lower") + " of avg " + cp_display_name);
-          else
-            tooltip.html(d["name"]+
-              "<br>"+numberWithCommas(d[user_type])+" | "+Math.round((d[user_type]/d.parent.parent[user_type])*10000)/100+"%" +  " of total "+ user_type+
-              "<br>"+"$"+numberWithCommas(Math.round(d.value))+" | "+Math.round((d.value/d.parent.parent.value)*10000)/100+"%" + " of total budget"+
-              "<br>"+"$"+numberWithCommas(Math.round(d[cp_name]/d[user_type]*10)/10)+" | "+Math.abs(Math.round((d[cp_name]/d[user_type]/d.parent.parent[cp_name]*d.parent.parent[user_type]*10000)/100-100))
-                + "% " + (d[cp_name]/d[user_type]-d.parent.parent[cp_name]/d.parent.parent[user_type]>0?"higher":"lower") + " of avg " + cp_display_name);
-          tooltip.style('display', 'block');
-          tooltip.style('z-index', '1000');})
+        .on('mousemove', map_onmousemove)
         .on('mouseout', function(d) {          
             tooltip.style('display', 'none');                           // NEW
           })
@@ -481,9 +441,7 @@ function drawZoomablTreemap(element, json_data, usertype, compile, scope){
   }
 
   function name(d) {
-    return d.parent
-        ? name(d.parent) + "." + d.name
-        : d.name;
+    return d.name;
   }
 	//});
 }

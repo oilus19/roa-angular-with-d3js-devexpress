@@ -7,6 +7,7 @@ angular.module('resultsonair.controllers').
 
 		$scope.performanceChart = {};
 		$scope.filter1 = 'network';
+		$scope.filter2 = 'weekday';
 		$scope.filterv = true;
 		$scope.records = [];
 		$scope.total = {};
@@ -66,7 +67,7 @@ angular.module('resultsonair.controllers').
 				"dim_opt" : $scope.filter2
 			};
 
-			var DATA_URL = 'http://localhost:3000/performance_info';
+			var DATA_URL = 'http://roa-rest-dev.elasticbeanstalk.com/performance_info';
 
 			data_from_api({
 				type: 'GET',

@@ -4,16 +4,16 @@
 		<div class="btn-toolbar row">
 			<div class="col-md-8">
 				<div class="btn-group" data-toggle="buttons">
-					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'networks'" ng-change="LoadData(); ">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'network'" ng-change="LoadData(); ">
 						Network
 					</label>
-					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'channels'" ng-change="LoadData();">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'channel'" ng-change="LoadData();">
 						Channel
 					</label>
 					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'creative'" ng-change="LoadData();">
 						Creative
 					</label>
-					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Saturday'" ng-change="LoadData();">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'weekday'" ng-change="LoadData();">
 						Weekday
 					</label>
 				</div>
@@ -21,18 +21,18 @@
 				<div class="btn-group" style="margin-left: 80px">
 					<select class="form-control btn-lg" style="height:44px" ng-model="filter2" ng-change="LoadData();"> 
 						<option disabled selected>Combine with</option>
-						<option value="channels" ng-if="filter1!='channels'">Channel</option>
+						<option value="channel" ng-if="filter1!='channel'">Channel</option>
 						<option value="creative" ng-if="filter1!='creative'">Creative</option>			
-						<option value="Saturday" ng-if="filter1!='Saturday'">Weekday</option> 
-						<option value="Daytime">Daypart</option> 
-						<option value="Month of datetime">Month</option>
-						<option value="Week of datetime">Week</option>
+						<option value="weekday" ng-if="filter1!='Saturday'">Weekday</option>
+						<option value="daypart">Daypart</option>
+						<option value="month">Month</option>
+						<option value="week">Week</option>
 						<option value="country">Country</option> 
 						<option value="region">Region</option>
 						<option value="city">City</option> 
 						<option value="medium">Medium</option> 
 						<option value="device">Device</option> 
-						<option value="networks" ng-if="filter1!='networks'">Network</option> 
+						<option value="network" ng-if="filter1!='network'">Network</option>
 						<option value="program">Program</option>
 						<option value="">Center vs end</option> 
 						<option value="length">Length</option>
@@ -47,7 +47,7 @@
 					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'users'"  ng-change="LoadData();">
 						Users
 					</label>
-					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'new users'"  ng-change="LoadData();">
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'new_users'"  ng-change="LoadData();">
 						New Users
 					</label>
 					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'conversions'"  ng-change="LoadData();">
