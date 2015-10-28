@@ -17,7 +17,7 @@ angular.module('resultsonair.controllers').
 		$scope.palette = [];
 		$scope.data = [];
 		//$scope.user_type_array=["Returning Visitor"];
-		$scope.filter3 = "users"
+		$scope.filter3 = "users";
 		$scope.series = [];
 
 		$scope.LoadData = function()
@@ -52,101 +52,115 @@ angular.module('resultsonair.controllers').
 				$scope.user_type_array.push("New Visitor");
 			$scope.sampleData = [];
 			$scope.dataSource = [];
-			var data = {"tab_name" : $scope.filter1, 
+			var data = {"tab_name" : $scope.filter1,
 			"combine_name" : $scope.filter2,
 			"user_type_array" : $scope.user_type_array};
+
+			var DATA_URL = 'http://localhost:3000/performance_info';
+			// TODO add validation of params
+
+			function data_for_filter_2(item, key1){
+				var mp_data;
+				var temp_data = {};
+
+				$.each(item, function(key2, val){
+					temp_data["name"] = key1+","+key2;
+					temp_data["budget"] = Math.round(item[key2]["cost"]);
+					temp_data["users"] = Number(item[key2]["users"]);
+					temp_data["new users"] = Number(item[key2]["new users"]);
+					temp_data["conversions"] = Number(item[key2]["conversions"]);
+					temp_data["revenue"] = Number(item[key2]["revenue"]);
+					temp_data["ads"] = Number(item[key2]["ads"]);
+					temp_data["roi"] = Math.round(item[key2]["roi"]*100/item[key2]["ads"])+"%";
+
+					mp_data = item[key2];
+					mp_data["ads"+"_"+key1] = mp_data["ads"];
+					mp_data["cost"+"_"+key1] = Math.round(mp_data[cost_name]/mp_data[$scope.filter3]);
+					mp_data["responses"+"_"+key1] = Math.round(mp_data[$scope.filter3]/100)/10;
+					mp_data["maininfo"] = "sdf";
+					mp_data[index] = key1+"_"+key2;
+
+					$scope.dataSource.push(mp_data);
+					$scope.records.push(temp_data);
+					$scope.CpU += item[key2]["cpu"];
+					$scope.CpNU += item[key2]["cpnu"];
+					$scope.CpC += Number(item[key2]["cpc"]);
+					$scope["users"] += Number(item[key2]["users"]);
+					$scope["new users"] += Number(item[key2]["new users"]);
+					$scope["conversions"] += Number(item[key2]["conversions"]);
+					$scope.ads += item[key2]["ads"];
+				});
+				return item;
+			}
+			
+			function data_for_filter(item, index){
+				var temp_data = {};
+				temp_data["name"] = index;
+				temp_data["budget"] = Math.round(item["cost"]);
+				temp_data["users"] = Number(item["users"]);
+				temp_data["new users"] = Number(item["new users"]);
+				temp_data["conversions"] = Number(item["conversions"]);
+				temp_data["revenue"] = Number(item["revenue"]);
+				temp_data["ads"] = Number(item["ads"]);
+				temp_data["roi"] = Math.round(item["roi"]*100/item["ads"])+"%";
+				$scope.records.push(temp_data);
+				$scope.CpU += item["cpu"];
+				$scope.CpNU += item["cpnu"];
+				$scope.CpC += Number(item["cpc"]);
+				$scope["users"] += Number(item["users"]);
+				$scope["new users"] += Number(item["new users"]);
+				$scope["conversions"] += Number(item["conversions"]);
+				$scope.ads += item["ads"];
+				var mp_data = item;
+
+				mp_data["cost"+"_"+index] = Math.round(mp_data[cost_name]/mp_data[$scope.filter3]);
+				mp_data["responses"+"_"+index] = Math.round(mp_data[$scope.filter3]/100)/10;
+				mp_data["ads"+"_"+index] = mp_data[$scope.filter3];
+				mp_data["maininfo"] = "sdf";
+				mp_data[index] = index;
+
+				$scope.dataSource.push(mp_data);
+			}
+
+			function update_color(index) {
+				var color = hslToHex(Math.random(),0.5, 0.5);
+				$scope.palette.push(color);
+				$scope.series.push({
+					name: index,
+					argumentField: 'responses'+"_"+index,
+					valueField: 'cost'+"_"+index,
+					sizeField: 'ads'+"_"+index,
+					tagField: index,
+					color: color
+				});
+			}
 
 			$.ajax({
 				type: 'POST',
 				data: data,
-			    url: 'performance_dataset',	
+			    url: 'performance_dataset',
 			    success: function(data) {
 			    	$scope.data = data;
-			    	var i = 0;
-			    	var mp_data;
-			    	for (var key1 in data) {
-			    		//sampleData.push({"x": Number(data[key]["response"]/26), "y": Number(data[key]["revenue"]/2000)});
-			    		if($scope.filter2){
-			    			for (var key2 in data[key1]) {
-			    				var temp_data = {};
+					$.each(data, function(index, item){
+						//sampleData.push({"x": Number(data[key]["response"]/26), "y": Number(data[key]["revenue"]/2000)});
+						if($scope.filter2){
+							data_for_filter_2(item, index);
+						}else{
+							data_for_filter(item, index);
+						}
+						update_color(index);
+					});
+					console.log($scope.records);
+					console.log($scope.dataSource);
 
-			    				temp_data["name"] = key1+","+key2;
-			    				temp_data["budget"] = Math.round(data[key1][key2]["cost"]);
-			    				temp_data["users"] = Number(data[key1][key2]["users"]);
-			    				temp_data["new users"] = Number(data[key1][key2]["new users"]);
-			    				temp_data["conversions"] = Number(data[key1][key2]["conversions"]);
-			    				temp_data["revenue"] = Number(data[key1][key2]["revenue"]);
-			    				temp_data["ads"] = Number(data[key1][key2]["ads"]);
-			    				temp_data["roi"] = Math.round(data[key1][key2]["roi"]*100/data[key1][key2]["ads"])+"%";	
-			    				mp_data = data[key1][key2];	
-			    				mp_data["ads"+"_"+key1] = mp_data["ads"];
-			    				mp_data["cost"+"_"+key1] = Math.round(mp_data[cost_name]/mp_data[$scope.filter3]);
-					    		mp_data["responses"+"_"+key1] = Math.round(mp_data[$scope.filter3]/100)/10;
-					    		mp_data["maininfo"] = "sdf"
-					    		mp_data[key1] = key1+"_"+key2;
-
-					    		$scope.dataSource.push(mp_data);
-								$scope.records.push(temp_data);
-			    				$scope.CpU += data[key1][key2]["cpu"];
-			    				$scope.CpNU += data[key1][key2]["cpnu"];
-			    				$scope.CpC += Number(data[key1][key2]["cpc"]);
-			    				$scope["users"] += Number(data[key1][key2]["users"]);
-			    				$scope["new users"] += Number(data[key1][key2]["new users"]);
-			    				$scope["conversions"] += Number(data[key1][key2]["conversions"]);
-			    				$scope.ads += data[key1][key2]["ads"];
-			    			}
-			    		}else{
-		    				var temp_data = {};
-			    			temp_data["name"] = key1;
-			    			temp_data["budget"] = Math.round(data[key1]["cost"]);
-		    				temp_data["users"] = Number(data[key1]["users"]);
-		    				temp_data["new users"] = Number(data[key1]["new users"]);
-		    				temp_data["conversions"] = Number(data[key1]["conversions"]);
-			    			temp_data["revenue"] = Number(data[key1]["revenue"]);
-			    			temp_data["ads"] = Number(data[key1]["ads"]);
-			    			temp_data["roi"] = Math.round(data[key1]["roi"]*100/data[key1]["ads"])+"%";
-		    				$scope.records.push(temp_data);
-			    			$scope.CpU += data[key1]["cpu"];
-			    			$scope.CpNU += data[key1]["cpnu"];
-			    			$scope.CpC += Number(data[key1]["cpc"]);
-			    			$scope["users"] += Number(data[key1]["users"]);
-			    			$scope["new users"] += Number(data[key1]["new users"]);
-			    			$scope["conversions"] += Number(data[key1]["conversions"]);
-			    			$scope.ads += data[key1]["ads"];
-			    			mp_data = data[key1];
-
-
-			    			mp_data["cost"+"_"+key1] = Math.round(mp_data[cost_name]/mp_data[$scope.filter3]);
-					    	mp_data["responses"+"_"+key1] = Math.round(mp_data[$scope.filter3]/100)/10;
-					    	mp_data["ads"+"_"+key1] = mp_data[$scope.filter3];
-					    	mp_data["maininfo"] = "sdf";
-					    	mp_data[key1] = key1;
-
-					    	$scope.dataSource.push(mp_data);
-			    			
-			    		}
-
-			    		var color = hslToHex(Math.random(),0.5, 0.5);
-			    		$scope.palette.push(color);
-						$scope.series.push({
-			    			name: key1,
-							argumentField: 'responses'+"_"+key1,
-							valueField: 'cost'+"_"+key1,
-							sizeField: 'ads'+"_"+key1,
-							tagField: key1,
-							color: color
-			    		});
-			    		
-			    		i++;
-			    	};
-			    	$scope.$apply();
+					$scope.$apply();
 			    	$scope.updateChart();
 			    	$scope.updateTable();
 			    	$scope.updateCounters();
 			    	$scope.updateTotal();
 			    }
 			});
-		}
+		};
 
 		function componentToHex(c) {
 		    var hex = c.toString(16);
@@ -168,7 +182,7 @@ angular.module('resultsonair.controllers').
 		            if(t < 1/2) return q;
 		            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
 		            return p;
-		        }
+		        };
 
 		        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
 		        var p = 2 * l - q;
@@ -322,7 +336,7 @@ angular.module('resultsonair.controllers').
 			$element.find('#result_table thead tr.total').remove();
 			$element.find('#result_table-clone thead').prepend(tr);
 			$element.find('#result_table thead').prepend(tr.clone());
-		}
+		};
 		$scope.updateTable = function() {
 			var table = $element.find("#result_table");
 			var table_clone = $element.find("#result_table-clone");
