@@ -6,17 +6,15 @@ angular.module('resultsonair.controllers').
 		$rootScope.exportTableSelector = '#result_table.performance-table';
 
 		$scope.performanceChart = {};
-		$scope.filter1 = 'networks';
+		$scope.filter1 = 'network';
 		$scope.filterv = true;
-		$scope.sampleData = [];
 		$scope.records = [];
 		$scope.total = {};
-
+		$scope.cache = {};
 
 		$scope.ads = 0;
 		$scope.palette = [];
 		$scope.data = [];
-		//$scope.user_type_array=["Returning Visitor"];
 		$scope.filter3 = "users";
 		$scope.series = [];
 
@@ -28,7 +26,7 @@ angular.module('resultsonair.controllers').
 			case "users":
 				cost_name = "cpu";
 				break;
-			case "new users":
+			case "new_users":
 				cost_name = "cpnu";
 				break;
 			case "conversions":
@@ -40,127 +38,94 @@ angular.module('resultsonair.controllers').
 			$scope.CpNU = 0;
 			$scope.CpC = 0;
 			$scope["users"] = 0;
-			$scope["new users"] = 0;
+			$scope["new_users"] = 0;
 			$scope["conversions"] = 0;
 			$scope.records = [];
-			$scope.user_type_array = [];
 			$scope.series = [];
 			$scope.palette = [];
-			if($scope.filter3 == "Users" || $scope.filter3 == "Conversions")
-				$scope.user_type_array.push("Returning Visitor");
-			if($scope.filter3 == "New Users" || $scope.filter3 == "Conversions")
-				$scope.user_type_array.push("New Visitor");
-			$scope.sampleData = [];
 			$scope.dataSource = [];
-			var data = {"tab_name" : $scope.filter1,
-			"combine_name" : $scope.filter2,
-			"user_type_array" : $scope.user_type_array};
 
-			var DATA_URL = 'http://localhost:3000/performance_info';
-			// TODO add validation of params
-
-			function data_for_filter_2(item, key1){
-				var mp_data;
-				var temp_data = {};
-
-				$.each(item, function(key2, val){
-					temp_data["name"] = key1+","+key2;
-					temp_data["budget"] = Math.round(item[key2]["cost"]);
-					temp_data["users"] = Number(item[key2]["users"]);
-					temp_data["new users"] = Number(item[key2]["new users"]);
-					temp_data["conversions"] = Number(item[key2]["conversions"]);
-					temp_data["revenue"] = Number(item[key2]["revenue"]);
-					temp_data["ads"] = Number(item[key2]["ads"]);
-					temp_data["roi"] = Math.round(item[key2]["roi"]*100/item[key2]["ads"])+"%";
-
-					mp_data = item[key2];
-					mp_data["ads"+"_"+key1] = mp_data["ads"];
-					mp_data["cost"+"_"+key1] = Math.round(mp_data[cost_name]/mp_data[$scope.filter3]);
-					mp_data["responses"+"_"+key1] = Math.round(mp_data[$scope.filter3]/100)/10;
-					mp_data["maininfo"] = "sdf";
-					mp_data[index] = key1+"_"+key2;
-
-					$scope.dataSource.push(mp_data);
-					$scope.records.push(temp_data);
-					$scope.CpU += item[key2]["cpu"];
-					$scope.CpNU += item[key2]["cpnu"];
-					$scope.CpC += Number(item[key2]["cpc"]);
-					$scope["users"] += Number(item[key2]["users"]);
-					$scope["new users"] += Number(item[key2]["new users"]);
-					$scope["conversions"] += Number(item[key2]["conversions"]);
-					$scope.ads += item[key2]["ads"];
-				});
-				return item;
-			}
-			
-			function data_for_filter(item, index){
-				var temp_data = {};
-				temp_data["name"] = index;
-				temp_data["budget"] = Math.round(item["cost"]);
-				temp_data["users"] = Number(item["users"]);
-				temp_data["new users"] = Number(item["new users"]);
-				temp_data["conversions"] = Number(item["conversions"]);
-				temp_data["revenue"] = Number(item["revenue"]);
-				temp_data["ads"] = Number(item["ads"]);
-				temp_data["roi"] = Math.round(item["roi"]*100/item["ads"])+"%";
-				$scope.records.push(temp_data);
-				$scope.CpU += item["cpu"];
-				$scope.CpNU += item["cpnu"];
-				$scope.CpC += Number(item["cpc"]);
-				$scope["users"] += Number(item["users"]);
-				$scope["new users"] += Number(item["new users"]);
-				$scope["conversions"] += Number(item["conversions"]);
-				$scope.ads += item["ads"];
-				var mp_data = item;
-
-				mp_data["cost"+"_"+index] = Math.round(mp_data[cost_name]/mp_data[$scope.filter3]);
-				mp_data["responses"+"_"+index] = Math.round(mp_data[$scope.filter3]/100)/10;
-				mp_data["ads"+"_"+index] = mp_data[$scope.filter3];
-				mp_data["maininfo"] = "sdf";
-				mp_data[index] = index;
-
-				$scope.dataSource.push(mp_data);
-			}
-
-			function update_color(index) {
+			function update_color(item, index) {
 				var color = hslToHex(Math.random(),0.5, 0.5);
 				$scope.palette.push(color);
 				$scope.series.push({
-					name: index,
-					argumentField: 'responses'+"_"+index,
-					valueField: 'cost'+"_"+index,
-					sizeField: 'ads'+"_"+index,
-					tagField: index,
+					argumentField: 'responses_'+index,
+					valueField: 'cost_'+index,
+					sizeField: 'ads_'+index,
+					tagField: 'name',
 					color: color
 				});
 			}
 
-			$.ajax({
-				type: 'POST',
-				data: data,
-			    url: 'performance_dataset',
-			    success: function(data) {
-			    	$scope.data = data;
-					$.each(data, function(index, item){
-						//sampleData.push({"x": Number(data[key]["response"]/26), "y": Number(data[key]["revenue"]/2000)});
-						if($scope.filter2){
-							data_for_filter_2(item, index);
-						}else{
-							data_for_filter(item, index);
-						}
-						update_color(index);
-					});
-					console.log($scope.records);
-					console.log($scope.dataSource);
+			// TODO change start_date and end_date
+			var data = {
+				'start_date': '2015-07-01',
+				'end_date': '2015-08-20',
+				'campaign_id': '2',
+				"dim_main" : $scope.filter1,
+				"dim_opt" : $scope.filter2
+			};
 
-					$scope.$apply();
-			    	$scope.updateChart();
-			    	$scope.updateTable();
-			    	$scope.updateCounters();
-			    	$scope.updateTotal();
-			    }
+			var DATA_URL = 'http://localhost:3000/performance_info';
+
+			data_from_api({
+				type: 'GET',
+				data: data,
+				url: DATA_URL
+			}).then(function(data){
+				$scope.data = data.performance_items;
+				$scope.records = data.performance_items;
+				$scope.total = data.performance_total;
+				$scope.data_keys = {};
+				data.performance_items.map(function(item, index){
+					$scope.data_keys[item['name']] = index;
+				});
+
+				$scope.dataSource = data.performance_items.map(function(item, index){
+					// TODO fix
+					item["cost"+"_"+index] = Math.round(item[cost_name]);
+					item["responses"+"_"+index] = Math.round(item[$scope.filter3]/100)/10;
+					item["ads"+"_"+index] = item['ads'];
+					item["maininfo"] = "sdf";
+					// TODO refactor
+					return item;
+				});
+				data.performance_items.map(update_color);
+
+				// TODO refactor
+				$scope.CpU = $scope.total["cpu"];
+				$scope.CpNU = $scope.total["cpnu"];
+				$scope.CpC = $scope.total["cpc"];
+
+				$scope["users"] = Number($scope.total["users"]);
+				$scope["new_users"] = Number($scope.total["new_users"]);
+				$scope["conversions"] = Number($scope.total["conversions"]);
+				$scope.ads = $scope.total["ads"];
+				$scope.roi = $scope.total["roi"];
+
+				$scope.$apply();
+				$scope.updateChart();
+				$scope.updateTable();
+				$scope.updateCounters();
+				$scope.updateTotal();
 			});
 		};
+
+		function data_from_api(object){
+			var key = JSON.stringify(object);
+			var dfd = $.Deferred();
+			var main_dfd = $.Deferred();
+			if(!$scope.cache[key]) {
+				dfd = $.ajax(object);
+			} else {
+				dfd.resolve($scope.cache[key])
+			}
+			dfd.then(function(res){
+				$scope.cache[key] = res;
+				main_dfd.resolve($scope.cache[key]);
+			});
+			return main_dfd.promise();
+		}
 
 		function componentToHex(c) {
 		    var hex = c.toString(16);
@@ -242,27 +207,21 @@ angular.module('resultsonair.controllers').
 					title: 'Avg Cost per User'
 				},
 				legend: {
-					visible: false,
+					visible: false
 				},
 				palette: $scope.palette,
 				onPointHoverChanged: function (info) {
 					var clickedPoint = info.target;
-					var tags = clickedPoint.tag.split('_');
-					var tmp_data;
-					if(tags.length == 1)
-					{
-						tmp_data = $scope.data[tags[0]];
-					}else if(tags.length == 2){
-						tmp_data = $scope.data[tags[0]][tags[1]];
-					}
+					var item = $scope.records[$scope.data_keys[clickedPoint.tag]];
+
 					if (clickedPoint.isHovered()) {
-			            $("#cpu_num").html("$"+Math.round(tmp_data["cpu"]/tmp_data["users"]));
-						$("#cpnu_num").html("$"+Math.round(tmp_data["cpnu"]/tmp_data["new users"]));
-						$("#cpc_num").html("$"+Math.round(Number(tmp_data["cpc"])/tmp_data["conversions"]));
+			            $("#cpu_num").html("$"+Math.round(item["cpu"]));
+						$("#cpnu_num").html("$"+Math.round(item["cpnu"]));
+						$("#cpc_num").html("$"+Math.round(item["cpc"]));
 			        } else {
-			            $("#cpu_num").html("$"+Math.round($scope.CpU/$scope["users"]));
-			            $("#cpnu_num").html("$"+Math.round($scope.CpNU/$scope["new users"]));
-			            $("#cpc_num").html("$"+Math.round($scope.CpC/$scope["conversions"]));
+			            $("#cpu_num").html("$"+Math.round($scope.CpU));
+			            $("#cpnu_num").html("$"+Math.round($scope.CpNU));
+			            $("#cpc_num").html("$"+Math.round($scope.CpC));
 			        }
 			    },
 		        onPointClick: function (info) {
@@ -273,16 +232,8 @@ angular.module('resultsonair.controllers').
 		            var selectedPoint = info.target;
 		            
 		            if (selectedPoint.isSelected()) {
-		            	var tags = selectedPoint.tag.split('_');
-						var key;
-						if(tags.length == 1)
-						{
-							key = tags[0];
-						}else if(tags.length == 2){
-							key = tags[0]+','+tags[1];
-						}
 						$element.find("#result_table tr").removeClass('selected');
-					    $element.find("#result_table tr[title='"+key+"']").addClass('selected');
+					    $element.find("#result_table tr[title='"+selectedPoint.tag+"']").addClass('selected');
 					    $element.find("#result_table tr.selected").prependTo("#result_table tbody");
 		            } else {
 						$element.find("#result_table tr").removeClass('selected');
@@ -293,32 +244,16 @@ angular.module('resultsonair.controllers').
 			        visible: true
 			    },
 			    scrollingMode: "all", 
-			    zoomingMode: "all",
+			    zoomingMode: "all"
 			}).dxChart("instance");
-		}
+		};
 		$scope.updateCounters = function() {
-            $("#cpu_num").html("$"+Math.round($scope.CpU/$scope["users"]));
-            $("#cpnu_num").html("$"+Math.round($scope.CpNU/$scope["new users"]));
-            $("#cpc_num").html("$"+Math.round($scope.CpC/$scope["conversions"]));
-		}
+            $("#cpu_num").html("$"+Math.round($scope.CpU));
+            $("#cpnu_num").html("$"+Math.round($scope.CpNU));
+            $("#cpc_num").html("$"+Math.round($scope.CpC));
+		};
 		$scope.updateTotal = function(){
-			$scope.total.ads = 0;
-			$scope.total.budget = 0;
-			$scope.total.revenue = 0;
-			$scope.total["users"] = 0;
-			$scope.total["new users"] = 0;
-			$scope.total["conversions"] = 0;
-			for(var i=0; i<$scope.records.length; i++) {
-				$scope.total.ads += parseInt($scope.records[i].ads) || 0;
-				$scope.total.budget += parseInt($scope.records[i].budget) || 0;
-				$scope.total.revenue += parseInt($scope.records[i].revenue) || 0;
-				$scope.total["users"] += parseInt($scope.records[i]["users"]) || 0;
-				$scope.total["new users"] += parseInt($scope.records[i]["new users"]) || 0;
-				$scope.total["conversions"] += parseInt($scope.records[i]["conversions"]) || 0;
-			}
-
-
-			var tr = $("<tr class='total'><th colspan='1' id='result_table-col-0-clone'></th><th data-priority='1' id='result_table-col-1-clone'></th><th data-priority='2' id='result_table-col-2-clone'></th><th data-priority='7' id='result_table-col-3-clone'></th><th data-priority='4' id='result_table-col-4-clone'></th><th data-priority='5' id='result_table-col-5-clone'></th><th data-priority='7' id='result_table-col-6-clone'></th><th data-priority='7' id='result_table-col-7-clone'></th></tr>");	
+			var tr = $("<tr class='total'><th colspan='1' id='result_table-col-0-clone'></th><th data-priority='1' id='result_table-col-1-clone'></th><th data-priority='2' id='result_table-col-2-clone'></th><th data-priority='7' id='result_table-col-3-clone'></th><th data-priority='4' id='result_table-col-4-clone'></th><th data-priority='5' id='result_table-col-5-clone'></th><th data-priority='7' id='result_table-col-6-clone'></th><th data-priority='7' id='result_table-col-7-clone'></th></tr>");
 			$(tr).addClass('bg-info');
 			for(var i=1; i<=$element.find("#result_table-clone thead tr:last-child th").length; i++) {
 				$element.find("#result_table thead tr:last-child th:nth-child("+i+")").is(":visible")?tr.find("th:nth-child("+i+")").css('display','table-cell'):tr.find("th:nth-child("+i+")").css('display','none');
@@ -327,9 +262,10 @@ angular.module('resultsonair.controllers').
 			$(tr).find('th:nth-child(1)').html('Total');
 			$(tr).find('th:nth-child(2)').html($scope.total.ads);
 			$(tr).find('th:nth-child(3)').html($scope.total.budget);
+			$(tr).find('th:nth-child(4)').html($scope.total.roi);
 			$(tr).find('th:nth-child(5)').html($scope.total.revenue);
 			$(tr).find('th:nth-child(6)').html($scope.total.users);
-			$(tr).find('th:nth-child(7)').html($scope.total["new users"]);
+			$(tr).find('th:nth-child(7)').html($scope.total.new_users);
 			$(tr).find('th:nth-child(8)').html($scope.total.conversions);
 			
 			$element.find('#result_table-clone thead tr.total').remove();
@@ -347,7 +283,7 @@ angular.module('resultsonair.controllers').
 			}	
 			$(table).DataTable().clear();
 			$(table_clone).DataTable().clear();
-			var column_list = ['name','ads','budget','roi','revenue','users','new users','conversions'];
+			var column_list = ['name','ads','budget','roi','revenue','users','new_users','conversions'];
 			for(var i=0; i<$scope.records.length; i++) {
 				var new_tr = $(tr).clone();
 				new_tr.attr('title', $scope.records[i].name);
@@ -364,14 +300,14 @@ angular.module('resultsonair.controllers').
 
 			$(table).DataTable().draw();
 			$(table_clone).DataTable().draw();
-		}
+		};
 		$scope.updateChart = function(){
 			$scope.performanceChart.option({
 				dataSource: $scope.dataSource,
 				palette: $scope.palette,
 				series: $scope.series
 			});
-		}
+		};
 
 		$scope.$watch(function(scope){return scope.filter3},function(){
 			$scope.LoadData();
@@ -384,7 +320,7 @@ angular.module('resultsonair.controllers').
 					valueTitle = "Avg Cost per User";
 					shortArgumentTitle = "CpU";
 					break;
-				case 'new users':
+				case 'new_users':
 					argumentTitle = "New Users";
 					valueTitle = "Avg Cost per New User";
 					shortArgumentTitle = "CpNU";
@@ -409,7 +345,7 @@ angular.module('resultsonair.controllers').
 			                html: '<div style="text-align:right">' + arg.point.tag + '<br/>' + argumentTitle + ': ' + arg.argumentText + 'K <br/>' + shortArgumentTitle + ': $' + arg.valueText + '</div>'
 			            };
 			        }
-				},
+				}
 			});
 
 		});

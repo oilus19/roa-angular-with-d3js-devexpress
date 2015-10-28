@@ -3,16 +3,16 @@
 		<div class="btn-toolbar row">
 			<div class="col-md-8">
 				<div class="btn-group" data-toggle="buttons">
-					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'networks'" ng-change="LoadData();">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'network'" ng-change="LoadData();">
 						Network
 					</label>
-					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'channels'" ng-change="LoadData();">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'channel'" ng-change="LoadData();">
 						Channel
 					</label>
 					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'creative'" ng-change="LoadData();">
 						Creative
 					</label>
-					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'Saturday'" ng-change="LoadData();">
+					<label class="btn btn-white btn-lg" ng-model="filter1" btn-radio="'weekday'" ng-change="LoadData();">
 						Weekday
 					</label>
 				</div>
@@ -21,17 +21,17 @@
 					<select class="form-control btn-lg" style="height:44px" ng-model="filter2" ng-change="LoadData();"> 
 						<option disabled selected>Combine with</option> 
 						<option value="campaign">Campaign</option>
-						<option value="Month of datetime">Month</option>
-						<option value="Week of datetime">Week</option>
-						<option value="Saturday" ng-if="filter1!='Saturday'">Weekday</option>
-						<option value="Daytime">Daypart</option>
+						<option value="month">Month</option>
+						<option value="week">Week</option>
+						<option value="weekday" ng-if="filter1!='weekday'">Weekday</option>
+						<option value="daypart">Daypart</option>
 						<option value="country">Country</option>
 						<option value="region">Region</option>
 						<option value="city">City</option>
 						<option value="medium">Medium</option> 
 						<option value="device">Device</option> 
-						<option value="networks" ng-if="filter1!='networks'">Network</option>
-						<option value="channels" ng-if="filter1!='channels'">Channel</option>
+						<option value="networks" ng-if="filter1!='network'">Network</option>
+						<option value="channels" ng-if="filter1!='channel'">Channel</option>
 						<option value="creative" ng-if="filter1!='creative'">Creative</option> 
 						<option value="program">Program</option>
 						<option value="">Place in break</option>
@@ -46,7 +46,7 @@
 					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'users'">
 						Users
 					</label>
-					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'new users'">
+					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'new_users'">
 						New Users
 					</label>
 					<label class="btn btn-white btn-lg" ng-model="filter3" btn-radio="'conversions'">
@@ -76,7 +76,7 @@
 								<i class="linecons-cloud"></i>
 							</div>
 							<div class="xe-label">
-								<strong id="cpu_num" class="num">0.0%</strong>
+								<strong id="cpu_num" class="num"></strong>
 								<span style="text-transform: none;">CpU</span>
 							</div>
 						</div>
@@ -88,7 +88,7 @@
 							<i class="linecons-user"></i>
 						</div>
 						<div class="xe-label">
-							<strong id="cpnu_num" class="num">0</strong>
+							<strong id="cpnu_num" class="num"></strong>
 							<span style="text-transform: none;">CpNU</span>
 						</div>
 					</div>
@@ -100,7 +100,7 @@
 							<i class="linecons-camera"></i>
 						</div>
 						<div class="xe-label">
-							<strong id="cpc_num" class="num">0</strong>
+							<strong id="cpc_num" class="num"></strong>
 							<span style="text-transform: none;">CpC</span>
 						</div>
 					</div>
